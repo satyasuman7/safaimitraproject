@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  /* background: linear-gradient(135deg, #0052A3 0%, #002F6C 50%, #FFA800 50.5%, #FFD700 100%); */
+  /* background: linear-gradient(90deg,rgba(0, 47, 108, 1) 0%, rgba(0, 82, 163, 1) 28%, rgba(255, 168, 0, 1) 73%); */
+  background-color: red;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  color: white;
+}
+
+/* USER-PROFILE COMPONENTS STARTS */
+.hoverss{ color: black; }
+    .hoverss:hover{ color: #1B84FF; }
+.details_icon{ color: gray; }
+    .details_icon:hover{ color: #1B84FF; cursor: pointer; }
+
+.nav-link{
+    color: rgb(66, 65, 65) !important;
+    font-weight: 700;
+}
+.nav-link.active{
+    color:#1B84FF !important ;
+}
+/* USER-PROFILE COMPONENT ENDS */
+
+
+/* Use in All COMPONENTS */
+.all-card {
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.logo { height: 60px; }
+
+
+/* OTP COMPONENT STARTS */
+.otp-page {
+  /* background: linear-gradient(to right, #003366, #0055a5); */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.otp-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 40px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+.otp-box h4 { font-weight: 600; margin-bottom: 10px; }
+
+.otp-box p {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  width: 40px;
+  height: 48px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.verify-btn {
+  background-color: #0d6efd;
+  color: white;
+  padding: 10px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.verify-btn:hover { background-color: #0b5ed7; }
+
+.resend-text {
+  font-size: 13px;
+  margin-top: 15px;
+  color: #6c757d;
+}
+
+/* OTP COMPONENT ENDS */
+
+/* ADD-EMPLOYEES COMPONENT */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+  background-color: #f9f9f9;
+}
+
+.profile-card {
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.avatar-wrapper .avatar-img {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-wrapper img.avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.edit-btn,
+.remove-btn {
+  position: absolute;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  font-size: 14px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-btn {
+  top: 0;
+  right: 0;
+}
+
+.remove-btn {
+  bottom: 0;
+  right: 0;
+}
+
+/* SIGNIN COMPONENT */
+.flag-icon {
+  width: 24px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+

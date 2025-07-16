@@ -1,0 +1,21 @@
+/* Global dark mode styles */
+.dark-mode {
+  background-color: #121212 !important;
+  color: white !important;
+}
+
+.dark-mode .navbar {
+  background-color: #1e1e1e !important;
+}
+
+.dark-mode .nav-link {
+  color: white !important;
+}
+
+.dark-mode .nav-link:hover {
+  color: #ccc !important;
+}
+
+.dark-mode .btn {
+  color: white !important;
+}

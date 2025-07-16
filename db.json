@@ -1,0 +1,113 @@
+{
+  "departments": [
+    {
+      "id": "a2b8",
+      "nameD": "Safai",
+      "iconD": {},
+      "descriptionD": "clean",
+      "createdAt": "2025-07-15T05:57:06.830Z"
+    }
+  ],
+  "ngo": [
+    {
+      "id": "8ad6",
+      "nameN": "wertyu",
+      "iconN": {},
+      "descriptionN": "poiu ytfd",
+      "createdAt": "2025-07-16T09:13:59.586Z"
+    }
+  ],
+  "employees": [
+    {
+      "id": "f7a4",
+      "department_id": "Water Works",
+      "city_id": "Delhi",
+      "area_id": "Ward 102 - Indiranagar",
+      "role": "Vehicle Coordinator",
+      "user_name": "Henali",
+      "mobile": "7000720467",
+      "email": "Wow9893@gmail.com",
+      "password": "wow123",
+      "employee_code": "safai456",
+      "status": false,
+      "profileImage": "/300-1.jpg",
+      "createdAt": "2025-07-14T10:43:07.524Z"
+    },
+    {
+      "id": "ba5e",
+      "department_id": "Sanitation",
+      "city_id": "Bhubaneswar",
+      "area_id": "102 - Bapuji Nagar",
+      "role": "MCC Supervisor",
+      "user_name": "Sanant Sangram Behera",
+      "mobile": "77654334566",
+      "email": "sanant@gmail.com",
+      "password": "ss-123",
+      "employee_code": "safai789",
+      "status": true,
+      "profileImage": "blob:http://localhost:5173/39fb7192-157c-4a8a-ae45-29346c2845d1",
+      "createdAt": "2025-07-15T06:24:35.837Z"
+    },
+    {
+      "id": "d586",
+      "department_id": "Sanitation",
+      "city_id": "Pune",
+      "area_id": "101 - Pimpri Chichwad",
+      "role": "Supervisor",
+      "user_name": "Satya Suman Behera",
+      "mobile": "7000720467",
+      "email": "satyasuman9893@gmail.com",
+      "password": "satya123",
+      "employee_code": "safai456",
+      "status": false,
+      "profileImage": "blob:http://localhost:5173/b38a6d18-aed9-4e2a-b922-cae12e4b36d4",
+      "createdAt": "2025-07-15T06:31:02.843Z"
+    }
+  ],
+  "complain": [
+    {
+      "id": "7e51",
+      "category_name": "Dead Animal",
+      "complaintdescription": "Smelling very bad",
+      "complainticon": {},
+      "createdAt": "2025-07-13T17:40:26.831Z"
+    },
+    {
+      "id": "697c",
+      "category_name": "Public Toilets",
+      "complaintdescription": "Not Clean",
+      "complainticon": {},
+      "createdAt": "2025-07-15T04:40:34.233Z"
+    },
+    {
+      "id": "0a31",
+      "category_name": "Drainage",
+      "complaintdescription": "clean not happening",
+      "complainticon": {},
+      "createdAt": "2025-07-15T04:47:01.246Z"
+    },
+    {
+      "id": "e459",
+      "category_name": "Solid Waste",
+      "complaintdescription": "qqqqq",
+      "complainticon": {},
+      "createdAt": "2025-07-15T04:49:14.287Z"
+    }
+  ],
+  "resources": [
+    {
+      "id": "65bb",
+      "type": "Vehicle",
+      "name": "Ashok Leyland ",
+      "registrationNo": "OD-19-QA-2202",
+      "ward": "Ward 102",
+      "condition": "Needs Repair",
+      "image": {},
+      "assignedTo": {
+        "id": "d586",
+        "label": "Henali (User)"
+      },
+      "createdAt": "2025-07-15T11:42:03.297Z"
+    }
+  ]
+}

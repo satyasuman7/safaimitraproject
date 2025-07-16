@@ -17,8 +17,8 @@ async function submitFn(prev, formData) {
     body: JSON.stringify(newNGO)
   });
 
-  if (!res.ok) return alert("Error adding NGO");
-  return alert("Added NGO Successfully!!");
+  if (!res.ok) return toast.error("Error adding NGO");
+  return toast.success("Added NGO Successfully!!");
 }
 
 export default function AddNgo() {

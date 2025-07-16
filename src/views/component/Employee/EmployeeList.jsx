@@ -22,8 +22,8 @@ export default function EmployeeList({ heading, buttonText, showForm, setShowFor
       data={employees}
       searchKeys={['user_name', 'email', 'mobile', 'role', 'city_id']}
       actionLabel="employees"
-      heading={heading}
-      buttonText={buttonText}
+      heading={ heading }
+      buttonText={ buttonText }
       showForm={showForm}
       toggleFn={() => setShowForm(!showForm)}
       renderRow={(emp, index) => (

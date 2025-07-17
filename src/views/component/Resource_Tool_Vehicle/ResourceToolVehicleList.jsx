@@ -15,12 +15,12 @@ export default function ResourceToolVehicleList({
     fetch(API_URL)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch resources");
-         console.log("res",res);
+        console.log("res", res);
         return res.json();
       })
       .then(data => {
         setResources(data);
-        console.log("data",data);
+        console.log("data", data);
       })
       .catch(err => {
         console.error("Fetch error:", err);
@@ -28,44 +28,46 @@ export default function ResourceToolVehicleList({
       });
   }, []);
 
-  const columns = [ "Sl.No.", "Type", "Name", "Ward", "Assigned To", "Registration No.", "Condition", "Image", "Created At", "Actions" ];
+  const columns = ["Sl.No.", "Type", "Name", "Ward", "Assigned To", "Registration No.", "Condition", "Image", "Created At", "Actions"];
 
   return (
-    <div className="container mt-5" data-bs-theme={darkMode ? 'dark' : 'light'}>
-      <div className="card shadow">
-        <div className="card-body p-5">
-          <Table
-            columns={columns}
-            data={resources}
-            actionLabel="resources"
-            searchKeys={['name', 'registrationNo']}
-            heading={heading}
-            buttonText={buttonText}
-            renderRow={(resrc, index) => (
-              <>
-                <td>{index + 1}</td>
-                <td>{resrc.type}</td>
-                <td>{resrc.name}</td>
-                <td>{resrc.ward}</td>
-                <td>{resrc.assignedTo?.label || '-'}</td>
-                <td>{resrc.registrationNo || '-'}</td>
-                <td>{resrc.condition || '-'}</td>
-                <td>
-                  {resrc.image ? (
-                    <img src={`/uploads/${resrc.image}`} alt="icon" height="40" />
-                  ) : (
-                    "No Image"
-                  )}
-                </td>
-                <td>{new Date(resrc.createdAt).toLocaleDateString('en-GB')}</td>
-                <td>
-                  <button className="btn btn-sm border">⋮</button>
-                </td>
-              </>
-            )}
-          />
+    <>
+      <div className="container mt-5" data-bs-theme={darkMode ? 'dark' : 'light'}>
+        <div className="card shadow">
+          <div className="card-body p-5">
+            <Table
+              columns={columns}
+              data={resources}
+              actionLabel="resources"
+              searchKeys={['name', 'registrationNo']}
+              heading={heading}
+              buttonText={buttonText}
+              renderRow={(resrc, index) => (
+                <>
+                  <td>{index + 1}</td>
+                  <td>{resrc.type}</td>
+                  <td>{resrc.name}</td>
+                  <td>{resrc.ward}</td>
+                  <td>{resrc.assignedTo?.label || '-'}</td>
+                  <td>{resrc.registrationNo || '-'}</td>
+                  <td>{resrc.condition || '-'}</td>
+                  <td>
+                    {resrc.image ? (
+                      <img src={`/uploads/${resrc.image}`} alt="icon" height="40" />
+                    ) : (
+                      "No Image"
+                    )}
+                  </td>
+                  <td>{new Date(resrc.createdAt).toLocaleDateString('en-GB')}</td>
+                  <td>
+                    <button className="btn btn-sm border">⋮</button>
+                  </td>
+                </>
+              )}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

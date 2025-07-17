@@ -32,60 +32,62 @@ export default function AddDepartment() {
   }, [formState]);
 
   return (
-    <div className="container mt-5" data-bs-theme={darkMode ? 'dark' : 'light'}>
-      <div className="card shadow">
-        <div className="card-body p-5">
-          {showForm ? (
-            <>
-              <div className="d-flex justify-content-between align-items-center mb-4">
-                <h4 className="fw-bold mb-0">Department Management</h4>
-                <button className="btn btn-primary" onClick={() => setShowForm(false)}>Close Form</button>
-              </div>
+    <>
+      <div className="container mt-5" data-bs-theme={darkMode ? 'dark' : 'light'}>
+        <div className="card shadow">
+          <div className="card-body p-5">
+            {showForm ? (
+              <>
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                  <h4 className="fw-bold mb-0">Department Management</h4>
+                  <button className="btn btn-primary" onClick={() => setShowForm(false)}>Close Form</button>
+                </div>
 
-              <form action={formSubmit}>
-                <div className="mb-3 row">
-                  <label className="col-md-4 col-form-label fw-semibold">
-                    Department Name <span className="text-danger">*</span>
-                  </label>
-                  <div className="col-md-8">
-                    <input type="text" name="nameD" className="form-control" required />
+                <form action={formSubmit}>
+                  <div className="mb-3 row">
+                    <label className="col-md-4 col-form-label fw-semibold">
+                      Department Name <span className="text-danger">*</span>
+                    </label>
+                    <div className="col-md-8">
+                      <input type="text" name="nameD" className="form-control" required />
+                    </div>
                   </div>
-                </div>
 
-                <div className="mb-3 row">
-                  <label className="col-md-4 col-form-label fw-semibold">
-                    Icon Filename <span className="text-danger">*</span>
-                  </label>
-                  <div className="col-md-8">
-                    <input type="file" name="iconD" className="form-control" required />
+                  <div className="mb-3 row">
+                    <label className="col-md-4 col-form-label fw-semibold">
+                      Icon Filename <span className="text-danger">*</span>
+                    </label>
+                    <div className="col-md-8">
+                      <input type="file" name="iconD" className="form-control" required />
+                    </div>
                   </div>
-                </div>
 
-                <div className="mb-3 row">
-                  <label className="col-md-4 col-form-label fw-semibold">Description</label>
-                  <div className="col-md-8">
-                    <textarea name="descriptionD" className="form-control" required />
+                  <div className="mb-3 row">
+                    <label className="col-md-4 col-form-label fw-semibold">Description</label>
+                    <div className="col-md-8">
+                      <textarea name="descriptionD" className="form-control" required />
+                    </div>
                   </div>
-                </div>
 
-                <div className="text-end">
-                  <button className="btn btn-primary" disabled={isPending}>
-                    {isPending ? "Submitting..." : "Add Department"}
-                  </button>
-                </div>
-              </form>
-            </>
-          ) : (
-            <DepartmentList
-              heading="Department Management"
-              buttonText="Add Department"
-              showForm={showForm}
-              setShowForm={setShowForm}
-              reload={formState}
-            />
-          )}
+                  <div className="text-end">
+                    <button className="btn btn-primary" disabled={isPending}>
+                      {isPending ? "Submitting..." : "Add Department"}
+                    </button>
+                  </div>
+                </form>
+              </>
+            ) : (
+              <DepartmentList
+                heading="Department Management"
+                buttonText="Add Department"
+                showForm={showForm}
+                setShowForm={setShowForm}
+                reload={formState}
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

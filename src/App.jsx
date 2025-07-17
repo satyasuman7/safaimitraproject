@@ -12,6 +12,7 @@ import Footer from './views/component/Footer'
 import AddResource_Tool_Vehicle from './views/component/Resource_Tool_Vehicle/AddResource_Tool_Vehicle'
 import ResourceToolVehicleList from './views/component/Resource_Tool_Vehicle/ResourceToolVehicleList';
 import AddNgo from './views/component/NGO/AddNgo';
+import NgoList from './views/component/NGO/NgoList';
 
 function App() {
 
@@ -21,13 +22,13 @@ function App() {
         <TopNavbar/>
         {/* <UserProfile /> */}
         {/* <AddDepartment/> */}
-        <AddEmployee/>
+        {/* <AddEmployee/> */}
         {/* <AddAreaWard/> */}
         {/* <AddComplaint/> */}
         {/* <SignIn /> */}
         {/* <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/> */}
 
-        <AddNgo/>
+        <AddNgo/> <NgoList/>
         <Footer/>
       </ThemeProvider>
       

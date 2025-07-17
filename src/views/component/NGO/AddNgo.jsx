@@ -1,12 +1,13 @@
 import React, { useActionState } from 'react'
 import { useTheme } from '../ThemeContext';
+import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:3000/ngo';
 
 async function submitFn(prev, formData) {
   const newNGO = {
     nameN: formData.get("nameN"),
-    iconN: formData.get("iconN"),
+    iconN: formData.get("iconN")?.name || "", // Get filename
     descriptionN: formData.get("descriptionN"),
     createdAt: new Date().toISOString()
   };
@@ -17,9 +18,15 @@ async function submitFn(prev, formData) {
     body: JSON.stringify(newNGO)
   });
 
-  if (!res.ok) return toast.error("Error adding NGO");
-  return toast.success("Added NGO Successfully!!");
+  if (!res.ok) {
+    toast.error("Error adding NGO");
+    return;
+  }
+
+  toast.success("Added NGO Successfully!!");
+  return {};
 }
+
 
 export default function AddNgo() {
   const { darkMode } = useTheme();

@@ -12,7 +12,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.js';
 import 'bootstrap/dist/js/bootstrap.js';
 import OtpVerification from './views/component/OtpVerification.jsx';
 import Error404 from './views/component/Error404.jsx'
-
+import { ToastContainer, toast } from 'react-toastify';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -21,5 +21,6 @@ createRoot(document.getElementById('root')).render(
       <Route path='/verify-otp' element={<OtpVerification/>} />
        <Route path='*' element={<Error404/>} />
     </Routes>
+    <ToastContainer />
   </BrowserRouter>,
 )

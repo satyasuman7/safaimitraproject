@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useActionState } from 'react';
 import { useTheme } from '../ThemeContext';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:3000/resources';
-const JSON_API = 'http://localhost:3000'; 
+const JSON_API = 'http://localhost:3000';
 
 // Submit handler
 async function submitFn(prevState, formData) {
   try {
     const assignedToRaw = formData.get("assignedTo");
-    const { id, label } = JSON.parse(assignedToRaw); 
+    const { id, label } = JSON.parse(assignedToRaw);
 
     const resourceForm = {
       type: formData.get("type"),
@@ -32,10 +33,10 @@ async function submitFn(prevState, formData) {
       body: JSON.stringify(resourceForm),
     });
 
-    if (!response.ok) return alert("Failed to submit resource.");
-    return alert("Successfully added resources!!");
+    if (!response.ok) return toast.error("Failed to submit resource.");
+    return toast.success("Successfully added resources!!");
   } catch (error) {
-    alert("Server error.");
+    toast.error("Server error.");
   }
 }
 
@@ -44,16 +45,21 @@ export default function AddResource_Tool_Vehicle() {
   const [formState, formSubmit, isPending] = useActionState(submitFn, {});
 
   const [departments, setDepartments] = useState([]);
-  const [employees, setEmployees] = useState([]);
+  const [ngo, setNgo] = useState([]);
+  // const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     fetch(`${JSON_API}/departments`)
       .then(res => res.json())
       .then(data => setDepartments(data));
 
-    fetch(`${JSON_API}/employees`)
+    fetch(`${JSON_API}/ngo`)
       .then(res => res.json())
-      .then(data => setEmployees(data));
+      .then(data => setNgo(data));
+
+    // fetch(`${JSON_API}/employees`)
+    //   .then(res => res.json())
+    //   .then(data => setEmployees(data));
   }, []);
 
   return (
@@ -61,7 +67,7 @@ export default function AddResource_Tool_Vehicle() {
       <div className="card shadow">
         <div className="card-body p-5">
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h4 className="fw-bold mb-0">Add Resource / Tool / Vehicle</h4> 
+            <h4 className="fw-bold mb-0">Add Resource / Tool / Vehicle</h4>
             <button className="btn btn-primary">
               <NavLink to="/resourcelist" className="text-decoration-none text-white">Resources List</NavLink>
             </button>
@@ -140,7 +146,18 @@ export default function AddResource_Tool_Vehicle() {
                     ))}
                   </optgroup>
 
-                  <optgroup label="Users">
+                  <optgroup label="NGOs">
+                    {ngo.map(ngo => (
+                      <option
+                        key={`ngo-${ngo.id}`}
+                        value={JSON.stringify({ id: ngo.id, label: `${ngo.nameN} (NGO)` })}
+                      >
+                        {ngo.nameN} (NGO)
+                      </option>
+                    ))}
+                  </optgroup>
+
+                  {/* <optgroup label="Users">
                     {employees.map(emp => (
                       <option
                         key={`emp-${emp.id}`}
@@ -149,7 +166,7 @@ export default function AddResource_Tool_Vehicle() {
                         {emp.user_name} (User)
                       </option>
                     ))}
-                  </optgroup>
+                  </optgroup> */}
                 </select>
               </div>
             </div>

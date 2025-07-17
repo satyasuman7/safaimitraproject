@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useActionState } from 'react';
 import ComplaintList from './ComplaintList';
 import { useTheme } from '../ThemeContext';
+import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:3000/complain';
 
@@ -19,10 +20,10 @@ async function submitFn(prevState, formData) {
       body: JSON.stringify(complaintForm),
     });
 
-    if (!response.ok) return alert("Failed to submit complaint");
-    return { success: true };
+    if (!response.ok) return toast.error("Failed to submit complaint");
+    return toast.success("Added Complaint Successfully ");
   } catch (error) {
-    alert("Server error");
+    toast.error("Server error");
   }
 }
 
@@ -73,11 +74,7 @@ export default function AddComplaint() {
                   <div className="mb-3 row">
                     <label className="col-md-4 col-form-label fw-semibold">Complaint Description</label>
                     <div className="col-md-8">
-                      <textarea
-                        className="form-control"
-                        name="complaintdescription"
-                        placeholder="Describe your complaint"
-                      />
+                      <textarea className="form-control" name="complaintdescription" placeholder="Describe your complaint" />
                     </div>
                   </div>
 

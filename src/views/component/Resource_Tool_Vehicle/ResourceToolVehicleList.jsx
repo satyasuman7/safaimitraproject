@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../Table';
 import { useTheme } from '../ThemeContext';
+import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:3000/resources';
 
@@ -13,18 +14,12 @@ export default function ResourceToolVehicleList({
 
   useEffect(() => {
     fetch(API_URL)
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to fetch resources");
-        console.log("res", res);
-        return res.json();
-      })
+      .then(res =>  res.json())
       .then(data => {
         setResources(data);
-        console.log("data", data);
       })
       .catch(err => {
-        console.error("Fetch error:", err);
-        alert("Error fetching data from /resources");
+        toast.error("Error fetching data from /resources");
       });
   }, []);
 

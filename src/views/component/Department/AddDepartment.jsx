@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useActionState } from 'react';
 import DepartmentList from './DepartmentList';
 import { useTheme } from '../ThemeContext';
+import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:3000/departments';
 
@@ -18,8 +19,8 @@ async function submitFn(prev, formData) {
     body: JSON.stringify(newDept)
   });
 
-  if (!res.ok) return alert("Error adding department");
-  return alert("Added Department Successfully!!");
+  if (!res.ok) return toast.error("Error adding department");
+  return toast.success("Added Department Successfully!!");
 }
 
 export default function AddDepartment() {

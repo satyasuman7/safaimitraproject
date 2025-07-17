@@ -26,9 +26,9 @@ function App() {
         {/* <AddAreaWard/> */}
         {/* <AddComplaint/> */}
         {/* <SignIn /> */}
-        {/* <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/> */}
+        <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/>
 
-        <AddNgo/> <NgoList/>
+        {/* <AddNgo/> <NgoList/> */}
         <Footer/>
       </ThemeProvider>
       

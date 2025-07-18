@@ -66,7 +66,7 @@
       "email": "satyasuman9893@gmail.com",
       "password": "satya123",
       "employee_code": "safai456",
-      "status": false,
+      "status": true,
       "profileImage": "blob:http://localhost:5173/b38a6d18-aed9-4e2a-b922-cae12e4b36d4",
       "createdAt": "2025-07-15T06:31:02.843Z"
     }
@@ -115,6 +115,38 @@
         "label": "Henali (User)"
       },
       "createdAt": "2025-07-15T11:42:03.297Z"
+    }
+  ],
+  "enforcement": [
+    {
+      "id": "d9c3",
+      "officer": {
+        "id": "d586",
+        "label": "Satya Suman Behera"
+      },
+      "violation_type": "Enforcement",
+      "amount": "78899",
+      "location": "20.250977921841795, 85.84011911818182",
+      "paymentMode": "Online",
+      "description": "fdazsxdcfgvbhnjm",
+      "imageVideo": "goonj.png",
+      "status": "Paid",
+      "createdAt": "2025-07-17T12:49:14.154Z"
+    },
+    {
+      "id": "0fc1",
+      "officer": {
+        "id": "ba5e",
+        "label": "Sanant Sangram Behera"
+      },
+      "violation_type": "Enforcement",
+      "amount": "1111",
+      "location": "20.250983415285187, 85.84012360424276",
+      "paymentMode": "Cash",
+      "description": "gergebvvxvfswe23xe32r32rx2r",
+      "imageVideo": "20944201.png",
+      "status": "Paid",
+      "createdAt": "2025-07-17T12:51:07.422Z"
     }
   ]
 }

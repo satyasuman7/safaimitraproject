@@ -13,6 +13,8 @@ import AddResource_Tool_Vehicle from './views/component/Resource_Tool_Vehicle/Ad
 import ResourceToolVehicleList from './views/component/Resource_Tool_Vehicle/ResourceToolVehicleList';
 import AddNgo from './views/component/NGO/AddNgo';
 import NgoList from './views/component/NGO/NgoList';
+import AddEnforcement from './views/component/EnforcementCase/AddEnforcement';
+import EnforcementList from './views/component/EnforcementCase/EnforcementList';
 
 function App() {
 
@@ -26,9 +28,10 @@ function App() {
         {/* <AddAreaWard/> */}
         {/* <AddComplaint/> */}
         {/* <SignIn /> */}
-        <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/>
+        {/* <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/> */}
 
         {/* <AddNgo/> <NgoList/> */}
+        <AddEnforcement/><EnforcementList/>
         <Footer/>
       </ThemeProvider>
       

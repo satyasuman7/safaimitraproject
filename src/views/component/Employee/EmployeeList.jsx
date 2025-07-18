@@ -44,7 +44,9 @@ export default function EmployeeList({ heading, buttonText, showForm, setShowFor
             <td>{emp.department_id}</td>
             <td>{emp.city_id}</td>
             <td>{emp.area_id}</td>
-            <td>{emp.status ? 'Active' : 'Inactive'}</td>
+            <td>
+              {emp.status ? (<span className="badge text-bg-success">Active</span>) : (<span className="badge text-bg-danger">Inactive</span>)}
+            </td>
             <td><button className="btn btn-sm border">⋮</button></td>
           </>
         )}

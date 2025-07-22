@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+
 import { ThemeProvider } from './views/component/ThemeContext';
 import UserProfile from './views/component/Admin/UserProfile'
 import AddDepartment from './views/component/Department/AddDepartment'
@@ -15,13 +16,17 @@ import AddNgo from './views/component/NGO/AddNgo';
 import NgoList from './views/component/NGO/NgoList';
 import AddEnforcement from './views/component/EnforcementCase/AddEnforcement';
 import EnforcementList from './views/component/EnforcementCase/EnforcementList';
+import Sidebar from './views/component/Sidebar';
+import { Dashboard } from './views/component/Dashboard/Dashboard';
 
 function App() {
 
   return (
     <>
       <ThemeProvider>
+        <Sidebar/>
         <TopNavbar/>
+        <Dashboard/>
         {/* <UserProfile /> */}
         {/* <AddDepartment/> */}
         {/* <AddEmployee/> */}
@@ -31,7 +36,7 @@ function App() {
         {/* <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/> */}
 
         {/* <AddNgo/> <NgoList/> */}
-        <AddEnforcement/><EnforcementList/>
+        {/* <AddEnforcement/><EnforcementList/> */}
         <Footer/>
       </ThemeProvider>
       

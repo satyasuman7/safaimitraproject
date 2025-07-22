@@ -1,57 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './TopNavbar.css';
+import React from 'react';
 import { useTheme } from './ThemeContext';
-
-//ICONS
+import './TopNavbar.css';
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { BiSearchAlt2, BiMessageDetail } from "react-icons/bi";
 import { PiNotificationBold } from "react-icons/pi";
 
-export default function TopNavbar() {
+export default function TopNavbar({ toggleSidebar }) {
   const { darkMode, toggleDarkMode } = useTheme();
 
   return (
-    <>
-      <div className={`container-fluid ${darkMode ? 'dark-mode' : 'bg-light text-dark'}`}>
-        <div className="row">
-          <nav className="navbar navbar-expand-lg">
-            <div className="container-fluid p-2">
+    <div className={`container-fluid ${darkMode ? 'dark-mode' : 'bg-light text-dark'} shadow`}>
+      <div className="row">
+        <nav className="navbar navbar-expand-lg">
+          <div className="container-fluid d-flex justify-content-between align-items-center px-2">
 
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <div className="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-3">
-                  <li className="nav-item">
-                    <a className="nav-link" href="#"><b>Help</b></a>
-                  </li>
-                </div>
+            {/* Sidebar Toggle Button - Always on Left */}
+            <button
+              className="btn border-0 me-2 d-lg-none"
+              onClick={toggleSidebar} // Call parent method to open sidebar
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
 
-                <ul className="navbar-nav me-1 mb-2 mb-lg-0 d-flex gap-3">
-                  <li className="nav-item">
-                    <a className="nav-link" href="#"><BiSearchAlt2 size={23} /></a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#"><BiMessageDetail size={23} /></a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#"><PiNotificationBold size={23} /></a>
-                  </li>
+            {/* Optional title or logo for center */}
+            <span className="navbar-brand d-lg-none">
+              <img src="/logo.jpeg" alt="Logo" style={{ width: "4rem" }} />
+            </span>
 
-                  {/* Dark mode toggle button */}
-                  <li className="nav-item">
-                    <button className="nav-link btn border-0" onClick={toggleDarkMode}>
-                      <b>{darkMode ? <IoMdMoon size={23} /> : <IoMdSunny size={23} />} </b>
-                    </button>
-                  </li>
-
-                  <li className="nav-item">
-                    <img src="/logo.jpeg" alt="" style={{ width: "6rem" }} />
-                  </li>
-                </ul>
-              </div>
+            {/* Right side icons and logo */}
+            <div className="d-flex align-items-center gap-3 ms-auto">
+              <a className="nav-link" href="#"><BiSearchAlt2 size={23} /></a>
+              <a className="nav-link" href="#"><BiMessageDetail size={23} /></a>
+              <a className="nav-link" href="#"><PiNotificationBold size={23} /></a>
+              <button className="btn nav-link border-0" onClick={toggleDarkMode}>
+                {darkMode ? <IoMdMoon size={23} /> : <IoMdSunny size={23} />}
+              </button>
+              <img src="/logo.jpeg" alt="Logo" style={{ width: "6rem" }} />
             </div>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
-    </>
+    </div>
   );
 }

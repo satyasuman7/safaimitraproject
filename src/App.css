@@ -1,8 +1,4 @@
 body {
-  margin: 0;
-  /* background: linear-gradient(135deg, #0052A3 0%, #002F6C 50%, #FFA800 50.5%, #FFD700 100%); */
-  /* background: linear-gradient(90deg,rgba(0, 47, 108, 1) 0%, rgba(0, 82, 163, 1) 28%, rgba(255, 168, 0, 1) 73%); */
-  background-color: red;
   /* background-repeat: no-repeat; */
   background-size: cover;
   color: white;
@@ -152,5 +148,52 @@ body {
   height: 18px;
   object-fit: cover;
   border-radius: 2px;
+}
+
+/* Enforcement Receipt PDF */
+#pdf-content {
+  width: 600px;
+  padding: 20px;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+#pdf-content h2 {
+  text-align: center;
+  color: #007bff;
+}
+
+#pdf-content p {
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+#pdf-content h5 {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#pdf-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#pdf-content table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+#pdf-content table td:first-child {
+  text-align: center;
+  font-weight: bold;
+  width: 40%;
+}
+
+#pdf-content .footer-note {
+  font-size: 10px;
+  margin-top: 30px;
+  text-align: center;
+  color: #888;
 }
 

@@ -18,6 +18,7 @@ async function submitFn(prevState, formData) {
       violation_type: formData.get("violation_type"),
       amount: formData.get("amount"),
       location: formData.get("location"),
+      locationName: formData.get("locationName"),
       paymentMode: formData.get("paymentMode"),
       description: formData.get("descriptionEnforce"),
       imageVideo: fileName,
@@ -52,11 +53,28 @@ const AddEnforcement = () => {
 
   // GEOLOCATION IN LOCATION FIELD
   const [location, setLocation] = useState('');
+  const [locationName, setLocationName] = useState('');
   useEffect(() => {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
-        setLocation(`${latitude}, ${longitude}`);
+        const latlng = `${latitude}, ${longitude}`;
+        setLocation(latlng);
+
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
+          );
+          const data = await response.json();
+          const addr = data.address;
+          const shortAddress = [addr.road, addr.suburb, addr.city, addr.country]
+            .filter(Boolean)
+            .join(', ');
+          setLocationName(shortAddress);
+        } catch (error) {
+          console.error("Reverse geocoding failed:", error);
+          setLocationName('');
+        }
       });
     } else {
       toast.warn('Geolocation not supported');
@@ -105,6 +123,7 @@ const AddEnforcement = () => {
               <label className="col-md-4 col-form-label fw-semibold">Location <span className="text-danger">*</span></label>
               <div className="col-md-8">
                 <input type="text" name="location" className="form-control" value={location} readOnly />
+                <input type="hidden" name="locationName" value={locationName} />
               </div>
             </div>
 

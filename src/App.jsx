@@ -16,17 +16,20 @@ import AddNgo from './views/component/NGO/AddNgo';
 import NgoList from './views/component/NGO/NgoList';
 import AddEnforcement from './views/component/EnforcementCase/AddEnforcement';
 import EnforcementList from './views/component/EnforcementCase/EnforcementList';
-import Sidebar from './views/component/Sidebar';
+// import Sidebar from './views/component/Sidebar';
 import { Dashboard } from './views/component/Dashboard/Dashboard';
+import SidebarEmp from './views/EmployeesComponent/sidebarEmp';
+
+
 
 function App() {
 
   return (
     <>
       <ThemeProvider>
-        <Sidebar/>
-        <TopNavbar/>
-        <Dashboard/>
+        {/* <Sidebar/> */}
+        {/* <TopNavbar/> */}
+        {/* <Dashboard/> */}
         {/* <UserProfile /> */}
         {/* <AddDepartment/> */}
         {/* <AddEmployee/> */}
@@ -37,7 +40,10 @@ function App() {
 
         {/* <AddNgo/> <NgoList/> */}
         {/* <AddEnforcement/><EnforcementList/> */}
-        <Footer/>
+        {/* <Footer/> */}
+
+
+        <SidebarEmp/>
       </ThemeProvider>
       
     </>

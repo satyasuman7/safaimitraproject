@@ -23,9 +23,9 @@ export default function TopNavbar({ toggleSidebar }) {
             </button>
 
             {/* Optional title or logo for center */}
-            <span className="navbar-brand d-lg-none">
+            {/* <span className="navbar-brand d-lg-none">
               <img src="/logo.jpeg" alt="Logo" style={{ width: "4rem" }} />
-            </span>
+            </span> */}
 
             {/* Right side icons and logo */}
             <div className="d-flex align-items-center gap-3 ms-auto">

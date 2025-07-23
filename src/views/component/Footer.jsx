@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <div className='container-fluid d-flex justify-content-between p-3'>
-        <p><span className='text-secondary'>2025 © </span>Techzex Software Pvt Ltd.</p>
+        <p><span className='text-secondary'>2025 © </span>Safai Mitra</p>
 
         <div>
           <NavLink to="#" className="text-decoration-none me-3">About</NavLink>

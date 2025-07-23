@@ -32,7 +32,7 @@ function App() {
         {/* <Dashboard/> */}
         {/* <UserProfile /> */}
         {/* <AddDepartment/> */}
-        {/* <AddEmployee/> */}
+        <AddEmployee/>
         {/* <AddAreaWard/> */}
         {/* <AddComplaint/> */}
         {/* <SignIn /> */}
@@ -43,7 +43,7 @@ function App() {
         {/* <Footer/> */}
 
 
-        <SidebarEmp/>
+        {/* <SidebarEmp/> */}
       </ThemeProvider>
       
     </>

@@ -9,7 +9,7 @@ export default function TopNavbar({ toggleSidebar }) {
   const { darkMode, toggleDarkMode } = useTheme();
 
   return (
-    <div className={`container-fluid ${darkMode ? 'dark-mode' : 'bg-light text-dark'} shadow`}>
+    <div className={`container-fluid position-sticky top-0 ${darkMode ? 'dark-mode' : 'bg-light text-dark'} shadow`} style={{zIndex:"5"}}>
       <div className="row">
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid d-flex justify-content-between align-items-center px-2">
@@ -17,7 +17,7 @@ export default function TopNavbar({ toggleSidebar }) {
             {/* Sidebar Toggle Button - Always on Left */}
             <button
               className="btn border-0 me-2 d-lg-none"
-              onClick={toggleSidebar} // Call parent method to open sidebar
+              onClick={toggleSidebar} 
             >
               <span className="navbar-toggler-icon"></span>
             </button>

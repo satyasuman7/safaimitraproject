@@ -7,7 +7,7 @@ import App from './App.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // TOASTR
-import { ToastContainer } from 'react-toastify'
+import { Flip, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 // BOOTSTRAP
@@ -52,7 +52,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/bagsale' element={<BagSale />} />
         </Route>
       </Routes>
-      <ToastContainer />
+      <ToastContainer theme="colored" transition={Flip}/>
     </ThemeProvider>
   </BrowserRouter>
 )

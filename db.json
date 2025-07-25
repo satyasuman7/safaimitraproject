@@ -108,13 +108,6 @@
       "createdAt": "2025-07-22T04:52:52.775Z"
     },
     {
-      "id": "57d1",
-      "category_name": "Drainage",
-      "complaintdescription": "qwdeded",
-      "complainticon": {},
-      "createdAt": "2025-07-22T05:04:41.010Z"
-    },
-    {
       "id": "2680",
       "category_name": "Solid Waste",
       "complaintdescription": "animals scatter the solid waste inside the dustbin",
@@ -178,5 +171,30 @@
       "createdAt": "2025-07-21T06:11:37.413Z"
     }
   ],
-  "toilet": []
+  "toilet": [],
+  "attendance": [],
+  "reportpartywaste": [
+    {
+      "id": "3034",
+      "partyOrganised": "Hotel",
+      "venuename": "Amrapaali bhavan",
+      "venuecontact": "7445867751",
+      "functiontype": "Cultral Programme",
+      "foodingtype": "Both",
+      "bookedfromapp": "Yes",
+      "noofguests": "150",
+      "customername": "Shiva nayak"
+    },
+    {
+      "id": "d09f",
+      "partyOrganised": "Open Field",
+      "venuename": "Gandhi Maidan",
+      "venuecontact": "447788522554",
+      "functiontype": "Religious Events",
+      "foodingtype": "Dinner",
+      "bookedfromapp": "No",
+      "noofguests": "2000",
+      "customername": "Narendra Modi"
+    }
+  ]
 }

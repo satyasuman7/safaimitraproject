@@ -32,14 +32,14 @@ function App() {
         {/* <Dashboard/> */}
         {/* <UserProfile /> */}
         {/* <AddDepartment/> */}
-        <AddEmployee/>
+        {/* <AddEmployee/> */}
         {/* <AddAreaWard/> */}
         {/* <AddComplaint/> */}
         {/* <SignIn /> */}
         {/* <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/> */}
 
         {/* <AddNgo/> <NgoList/> */}
-        {/* <AddEnforcement/><EnforcementList/> */}
+        <AddEnforcement/><EnforcementList/>
         {/* <Footer/> */}
 
 

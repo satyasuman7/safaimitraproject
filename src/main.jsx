@@ -6,6 +6,9 @@ import App from './App.jsx'
 // ROUTING
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+// PrimeReact core
+import 'primereact/resources/themes/lara-light-blue/theme.css';
+
 // TOASTR
 import { Flip, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'

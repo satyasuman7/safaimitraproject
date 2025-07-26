@@ -19,7 +19,6 @@ import { RiCameraAiFill } from "react-icons/ri";
 //   shadowUrl: new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).href,
 // });
 
-
 export default function Attendence() {
   const { darkMode } = useTheme();
   // Get geolocation
@@ -85,7 +84,7 @@ export default function Attendence() {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/attendance', {
+      const res = await fetch('http://localhost:3000/attendance', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -127,10 +126,10 @@ export default function Attendence() {
 
         <div className="row mt-5">
           <div className="col-md-6">
+            <label className='mb-2'>Upload Photo</label>
             <input ref={fileInputRef} type="file" accept="image/*" capture="user" className='d-none' onChange={handleImageChange} />
-
-            <button className="btn btn-danger me-4 mb-2" style={{width:"150px", height:"150px"}} onClick={openCamera} data-bs-theme={darkMode ? 'dark' : 'light'}>
-              <RiCameraAiFill className="cameraUpload" />
+            <button className="btn me-4 mb-2" onClick={openCamera} data-bs-theme={darkMode ? 'dark' : 'light'}>
+              <RiCameraAiFill className="cameraUpload" size={70}/>
             </button>
 
             {/* Image Preview */}

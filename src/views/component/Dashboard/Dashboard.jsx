@@ -4,6 +4,8 @@ import BarChart from '../Charts/BarChart';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '../ThemeContext';
 
+const API_URL = "http://localhost:3000";
+
 const Dashboard = () => {
   const { darkMode } = useTheme();
   const [counts, setCounts] = useState({
@@ -19,10 +21,10 @@ const Dashboard = () => {
     async function fetchCounts() {
       try {
         const [complainRes, resourcesRes, toiletRes, employeesRes] = await Promise.all([
-          fetch('http://localhost:3000/complain'),
-          fetch('http://localhost:3000/resources'),
-          fetch('http://localhost:3000/toilet'),
-          fetch('http://localhost:3000/employees'),
+          fetch(`${API_URL}/complain`),
+          fetch(`${API_URL}/resources`),
+          fetch(`${API_URL}/toilet`),
+          fetch(`${API_URL}/employees`),
         ]);
 
         const [complain, resources, toilet, employees] = await Promise.all([

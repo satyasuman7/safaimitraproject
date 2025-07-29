@@ -58,8 +58,8 @@ const Dashboard = () => {
   return (
     <div className="container my-4" data-bs-theme={darkMode ? 'dark' : 'light'}>
       <div className="breadcrumbText">
-        <h4>Dashboard</h4>
-        <nav aria-label="breadcrumb">
+        <h5>Dashboard</h5>
+        <nav aria-label="breadcrumb" style={{fontSize:"13px"}}>
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <NavLink to="#">Home</NavLink>

@@ -3,6 +3,7 @@ import './SidebarEmp.css';
 
 //ICON
 import { FaLongArrowAltRight, FaSignOutAlt, FaUser, FaRoad, FaBuilding, FaShoppingBag, FaMoneyBillAlt } from 'react-icons/fa';
+import { AiFillDashboard } from "react-icons/ai";
 import { LuPartyPopper, LuConstruction  } from "react-icons/lu";
 import { TbRoad } from "react-icons/tb";
 import { ImBin2 } from "react-icons/im";
@@ -13,6 +14,7 @@ import Footer from '../component/Footer';
 import { useTheme } from '../component/ThemeContext';
 
 const icons = {
+  'Dashboard': <AiFillDashboard className="me-3" />,
   'My Attendence': <FaUser className="me-3" />,
   'Roads Clean Report': <FaRoad className="me-3" />,
   'Report Party Waste': <LuPartyPopper className="me-3" />,
@@ -109,6 +111,7 @@ const SidebarEmp = () => {
             {/* Sidebar Links */}
             <div className="offcanvas-body flex-grow-1 overflow-y-auto overflow-x-hidden">
               {[
+                { label: 'Dashboard', to: '/' },
                 { label: 'My Attendence', to: '/attendence' },
                 { label: 'Roads Clean Report', to: '/roadcleanreport' },
                 { label: 'Report Party Waste', to: '/reportpartywaste' },

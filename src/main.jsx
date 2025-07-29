@@ -20,11 +20,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.js'
 // DARK MODE
 import { ThemeProvider } from './views/component/ThemeContext.jsx'
 
-// PAGES FOR USER COMPONENT
+// PAGES FOR EMPLOYEE COMPONENT
 import Error404 from './views/component/Error404.jsx'
 import SignIn from './views/component/SignIn.jsx'
 import SidebarEmp from './views/EmployeesComponent/sidebarEmp.jsx'
 import { Dashboard } from './views/component/Dashboard/Dashboard.jsx'
+import DashboardEmp from './views/EmployeesComponent/Components/DashboardEmp.jsx'
 import Attendence from './views/EmployeesComponent/Components/Attendence.jsx'
 import RoadCleanReport from './views/EmployeesComponent/Components/RoadCleanReport.jsx'
 import ReportPartyWaste from './views/EmployeesComponent/Components/ReportPartyWaste.jsx'
@@ -33,6 +34,7 @@ import CommercialCleaning from './views/EmployeesComponent/Components/Commercial
 import CndWaste from './views/EmployeesComponent/Components/CndWaste.jsx'
 import GarbageSpotted from './views/EmployeesComponent/Components/GarbageSpotted.jsx'
 import BagSale from './views/EmployeesComponent/Components/BagSale.jsx'
+
 
 
 createRoot(document.getElementById('root')).render(
@@ -44,7 +46,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='*' element={<Error404 />} />
         <Route path='/login' element={<SignIn />} />
         <Route path='/' element={<SidebarEmp />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<DashboardEmp />} />
           <Route path='/attendence' element={<Attendence />} />
           <Route path='/roadcleanreport' element={<RoadCleanReport />} />
           <Route path='/reportpartywaste' element={<ReportPartyWaste />} />

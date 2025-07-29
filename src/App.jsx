@@ -18,7 +18,8 @@ import AddEnforcement from './views/component/EnforcementCase/AddEnforcement';
 import EnforcementList from './views/component/EnforcementCase/EnforcementList';
 // import Sidebar from './views/component/Sidebar';
 import { Dashboard } from './views/component/Dashboard/Dashboard';
-import SidebarEmp from './views/EmployeesComponent/sidebarEmp';
+import UnassignedTicket from './views/component/TicketManagement/unassignedTicket';
+// import Table2 from './views/component/Table2';
 
 
 
@@ -39,11 +40,13 @@ function App() {
         {/* <AddResource_Tool_Vehicle/> <ResourceToolVehicleList/> */}
 
         {/* <AddNgo/> <NgoList/> */}
-        <AddEnforcement/><EnforcementList/>
+        {/* <AddEnforcement/> */}
+        {/* <EnforcementList/> */}
+        {/* <Table2/> */}
+        <UnassignedTicket/>
         {/* <Footer/> */}
 
 
-        {/* <SidebarEmp/> */}
       </ThemeProvider>
       
     </>

@@ -109,14 +109,14 @@ export default function Attendence() {
         <h1 className='mb-3'>My Attendance</h1>
         <div className="maps">
           {position ? (
-            <MapContainer center={position} zoom={16} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
+            <MapContainer center={position} zoom={16} scrollWheelZoom={true} className='map_card'>
               <TileLayer attribution='&copy; <NavLink to="https://www.openstreetmap.org/">OpenStreetMap</NavLink> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               <Marker position={position}>
                 <Popup>You are here</Popup>
               </Marker>
             </MapContainer>
           ) : (
-            <div className="d-flex justify-content-center" style={{ margin: "9rem" }}>
+            <div className="d-flex justify-content-center no_map_card">
               <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>

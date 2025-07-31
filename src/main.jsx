@@ -23,8 +23,8 @@ import { ThemeProvider } from './views/component/ThemeContext.jsx'
 // PAGES FOR EMPLOYEE COMPONENT
 import Error404 from './views/component/Error404.jsx'
 import SignIn from './views/component/SignIn.jsx'
-import SidebarEmp from './views/EmployeesComponent/sidebarEmp.jsx'
 import { Dashboard } from './views/component/Dashboard/Dashboard.jsx'
+import SidebarEmp from './views/EmployeesComponent/SidebarEmp.jsx'
 import DashboardEmp from './views/EmployeesComponent/Components/DashboardEmp.jsx'
 import Attendence from './views/EmployeesComponent/Components/Attendence.jsx'
 import RoadCleanReport from './views/EmployeesComponent/Components/RoadCleanReport.jsx'
@@ -34,7 +34,7 @@ import CommercialCleaning from './views/EmployeesComponent/Components/Commercial
 import CndWaste from './views/EmployeesComponent/Components/CndWaste.jsx'
 import GarbageSpotted from './views/EmployeesComponent/Components/GarbageSpotted.jsx'
 import BagSale from './views/EmployeesComponent/Components/BagSale.jsx'
-
+import MoKhataSale from './views/EmployeesComponent/Components/MoKhataSale.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -55,6 +55,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/cndwaste' element={<CndWaste />} />
           <Route path='/garbagespotted' element={<GarbageSpotted />} />
           <Route path='/bagsale' element={<BagSale />} />
+          <Route path='/mokhatasale' element={<MoKhataSale/>}/>
         </Route>
       </Routes>
       <ToastContainer theme="colored" transition={Flip}/>

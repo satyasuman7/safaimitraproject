@@ -23,7 +23,7 @@ const icons = {
   'Report CND Waste': <LuConstruction className="me-3" />,
   'Garbage Spotted': <ImBin2 className="me-3" />,
   'Bag Sale': <FaShoppingBag className="me-3" />,
-  'Sale': <FaMoneyBillAlt className="me-3" />,
+  'Mo Khata Sale': <FaMoneyBillAlt className="me-3" />,
 };
 
 const SidebarEmp = () => {
@@ -120,7 +120,7 @@ const SidebarEmp = () => {
                 { label: 'Report CND Waste', to: '/cndwaste' },
                 { label: 'Garbage Spotted', to: '/garbagespotted' },
                 { label: 'Bag Sale', to: '/bagsale' },
-                { label: 'Sale', to: '/sale' },
+                { label: 'Mo Khata Sale', to: '/mokhatasale' },
               ].map(({ label, to }) => (
                 <div key={label} className="d-flex dash justify-content-start align-items-center ps-4 my-4">
                   <NavLink

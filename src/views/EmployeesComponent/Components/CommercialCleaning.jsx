@@ -106,14 +106,14 @@ export default function CommercialCleaning() {
 
         <div className="maps mb-4">
           {position ? (
-            <MapContainer center={position} zoom={16} scrollWheelZoom style={{ height: '400px', width: '100%' }}>
+            <MapContainer center={position} zoom={16} scrollWheelZoom={true} className='map_card'>
               <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               <Marker position={position}>
                 <Popup>You are here</Popup>
               </Marker>
             </MapContainer>
           ) : (
-            <div className="d-flex justify-content-center" style={{ margin: '9rem' }}>
+            <div className="d-flex justify-content-center no_map_card">
               <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>

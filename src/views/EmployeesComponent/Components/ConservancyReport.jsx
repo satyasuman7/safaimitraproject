@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useActionState } from 'react';
 import { InputSwitch } from 'primereact/inputswitch';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -9,8 +9,8 @@ export default function ConservancyReport() {
   const [areaOptions, setAreaOptions] = useState([]);
   const [selectedAreaIndex, setSelectedAreaIndex] = useState('');
   const [sweeperCount, setSweeperCount] = useState('');
+  const [errors, setErrors] = useState({});
 
-  // Fetch area/ward/city data
   useEffect(() => {
     fetch('http://localhost:3000/location')
       .then(res => res.json())
@@ -31,9 +31,7 @@ export default function ConservancyReport() {
         });
         setAreaOptions(flattened);
       })
-      .catch(err => {
-        console.error("Failed to fetch location data:", err);
-      });
+      .catch(err => toast.error('Failed to fetch location data:', err));
   }, []);
 
   // Get user's geolocation
@@ -45,39 +43,60 @@ export default function ConservancyReport() {
     );
   }, []);
 
-  // Handle Form Submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Validation function
+  const validateForm = () => {
+    const newErrors = {};
+    if (selectedAreaIndex === '') newErrors.area = 'Please select a conservancy lane.';
+    if (!sweeperCount || parseInt(sweeperCount) <= 0)
+      newErrors.sweeper = 'Enter a valid sweeper count.';
+    if (!position) newErrors.location = 'Location not available. Enable GPS.';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // useActionState for form submission
+  const [state, submitAction, isPending] = useActionState(async prevState => {
+    if (!validateForm()) return prevState;
 
     const selectedArea = areaOptions[selectedAreaIndex];
 
     const conservancyReport = {
+      a_id: 2,
       area: selectedArea.area,
-      ward: selectedArea.ward,
+      ward_no: selectedArea.ward,
       city: selectedArea.city,
       latitude: position[0],
       longitude: position[1],
-      sweepersPresent: sweeperCount,
-      isClean: checked
+      sweeper_present: parseInt(sweeperCount),
+      is_clean: checked,
+      date: new Date().toISOString().split('T')[0],
     };
 
-    const response = await fetch('http://localhost:3000/conservancyreport', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(conservancyReport)
-    });
+    try {
+      const response = await fetch('http://localhost:5000/conservancyreport', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(conservancyReport),
+      });
 
-    if (response.ok) {
-      toast.success('Report submitted successfully!');
-      setSelectedAreaIndex(''); // Reset form
-      setSweeperCount('');
-      setChecked(true);
-    } else {
-      toast.error('Failed to submit report.');
+      if (response.ok) {
+        toast.success('Report submitted successfully!');
+        // ✅ Reset form after submission
+        setSelectedAreaIndex('');
+        setSweeperCount('');
+        setChecked(false);
+        setErrors({});
+        return { success: true };
+      } else {
+        toast.error('Failed to submit report.');
+        return { success: false };
+      }
+    } catch (err) {
+      console.error('Error submitting report:', err);
+      toast.error('Server error occurred.');
+      return { success: false };
     }
-  };
+  }, { success: false });
 
   return (
     <>
@@ -86,14 +105,14 @@ export default function ConservancyReport() {
 
         <div className="maps mb-4">
           {position ? (
-            <MapContainer center={position} zoom={16} scrollWheelZoom={true} style={{ height: '400px', width: '100%' }}>
+            <MapContainer center={position} zoom={16} scrollWheelZoom style={{ height: '400px', width: '100%' }}>
               <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               <Marker position={position}>
                 <Popup>You are here</Popup>
               </Marker>
             </MapContainer>
           ) : (
-            <div className="d-flex justify-content-center" style={{ margin: "9rem" }}>
+            <div className="d-flex justify-content-center" style={{ margin: '9rem' }}>
               <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
@@ -101,32 +120,39 @@ export default function ConservancyReport() {
           )}
         </div>
 
-        <form onSubmit={handleSubmit}>
+        {errors.location && <div className="alert alert-warning">{errors.location}</div>}
+
+        <form action={submitAction}>
           <div className="row">
+            {/* Conservancy Lane */}
             <div className="col-md-6 mb-4">
-              <label htmlFor="commerciallane" className='mb-2 ms-1'>Conservancy Lane</label>
-              <select name="commerciallane" id="commerciallane" className="form-select" value={selectedAreaIndex} onChange={(e) => setSelectedAreaIndex(e.target.value)}>
+              <label htmlFor="conservancylane" className="mb-2 ms-1">Conservancy Lane</label>
+              <select name="conservancylane" id="conservancylane" className={`form-select ${errors.area ? 'is-invalid' : ''}`} value={selectedAreaIndex} onChange={e => setSelectedAreaIndex(e.target.value)}>
                 <option value="" disabled>Select Conservancy Lane</option>
                 {areaOptions.map((item, index) => (
-                  <option key={index} value={index}>
-                    {item.area} ({item.ward})
-                  </option>
+                  <option key={index} value={index}> {item.area} ({item.ward}) </option>
                 ))}
               </select>
+              {errors.area && <div className="invalid-feedback">{errors.area}</div>}
             </div>
 
+            {/* Sweeper Count */}
             <div className="col-md-6 mb-4">
-              <label htmlFor="sweeperpresent" className='mb-2 ms-1'>Sweepers Present</label>
-              <input type="number" name='sweeperpresent' className='form-control' id='sweeperpresent' placeholder='No. of Sweepers Present' value={sweeperCount} onChange={(e) => setSweeperCount(e.target.value)} />
+              <label htmlFor="sweeper_present" className="mb-2 ms-1">Sweepers Present</label>
+              <input type="number" name="sweeper_present" className={`form-control ${errors.sweeper ? 'is-invalid' : ''}`} id="sweeper_present" placeholder="No. of Sweepers Present" value={sweeperCount} onChange={e => setSweeperCount(e.target.value)} />
+              {errors.sweeper && <div className="invalid-feedback">{errors.sweeper}</div>}
             </div>
 
+            {/* Lane Clean Switch */}
             <div className="col-md-6 mb-4 d-flex align-items-center">
-              <label className='me-3'>Conservancy Lane Clean?</label>
-              <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
+              <label className="me-3">Conservancy Lane Clean?</label>
+              <InputSwitch checked={checked} onChange={e => setChecked(e.value)} />
             </div>
           </div>
 
-          <button type="submit" className='btn btn-success'>Submit</button>
+          <button type="submit" className="btn btn-success" disabled={isPending}>
+            {isPending ? 'Submitting...' : 'Submit'}
+          </button>
         </form>
       </div>
     </>

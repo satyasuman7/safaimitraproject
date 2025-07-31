@@ -48,7 +48,10 @@
             },
             {
               "ward": "Ward 30",
-              "areas": ["Sahid Nagara", "Maharshi College & Private"]
+              "areas": [
+                "Sahid Nagara",
+                "Maharshi College & Private"
+              ]
             },
             {
               "ward": "Ward 39",
@@ -257,16 +260,6 @@
       "longitude": 85.84011878813021,
       "sweepersPresent": "10",
       "isClean": false
-    },
-    {
-      "id": "9722",
-      "area": "Jayadev Vihar Pvt. Plots",
-      "ward": "Ward 27",
-      "city": "Bhubaneswar",
-      "latitude": 20.250982740486723,
-      "longitude": 85.8401209244469,
-      "sweepersPresent": "7",
-      "isClean": true
     }
   ],
   "conservancyreport": [

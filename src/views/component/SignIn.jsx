@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useActionState } from 'react'; // ✅ React 19 feature
+import { toast } from 'react-toastify';
 
 const languages = [
   { code: "en", name: "English", flag: "/united-states.svg" },
-  { code: "es", name: "Spanish", flag: "/public/spain.svg" },
-  { code: "de", name: "German", flag: "/public/germany.svg" },
-  { code: "ja", name: "Japanese", flag: "/public/japan.svg" },
-  { code: "fr", name: "French", flag: "/public/france.svg" },
+  { code: "es", name: "Spanish", flag: "/spain.svg" },
+  { code: "de", name: "German", flag: "/germany.svg" },
+  { code: "ja", name: "Japanese", flag: "/japan.svg" },
+  { code: "fr", name: "French", flag: "/france.svg" },
 ];
 
 const SignIn = () => {
@@ -15,6 +17,22 @@ const SignIn = () => {
   const handleSelect = (lang) => {
     setSelected(lang);
   };
+
+  // ✅ useActionState hook for handling form submission
+  const [state, submitAction, isPending] = useActionState(async (prevState, formData) => {
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    // Simulating login request (replace with real API call)
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    if (email === "admin@techzex.com" && password === "123456") {
+      return toast.success("Login successful!");
+    } else {
+      return toast.error("Invalid email or password");
+    }
+  }, { success: null, message: "" });
+
   return (
     <>
       <div className="container">
@@ -36,8 +54,8 @@ const SignIn = () => {
           </div>
 
           {/* SIGNIN FORM */}
-          <div className="col-lg-6 col-md-6 col-sm-12 col-12 my-5 ">
-            <div className="card p-4 d-flex align-items-center " >
+          <div className="col-lg-6 col-md-6 col-sm-12 col-12 my-5">
+            <div className="card p-4 d-flex align-items-center">
               <div className="col-8">
                 <div className="text-center mb-4">
                   <h2 className="card-title mb-2">Sign In</h2>
@@ -50,17 +68,20 @@ const SignIn = () => {
                   <div className="flex-grow-1 border-top"></div>
                 </div>
 
-                <form action="" style={{ marginBottom: '11rem' }}>
+                {/* ✅ Form with useActionState */}
+                <form action={submitAction} style={{ marginBottom: '11rem' }}>
                   <div className="mb-3">
-                    <input type="email" className="form-control p-2" id="email" placeholder="Enter email" />
+                    <input type="email" name="email" className="form-control p-2" placeholder="Enter email" required />
                   </div>
                   <div className="mb-3">
-                    <input type="password" className="form-control p-2" id="password" placeholder="Enter password" />
+                    <input type="password" name="password" className="form-control p-2" placeholder="Enter password" required />
                   </div>
                   <div className='d-flex justify-content-end mb-3'>
                     <NavLink to="#">Forgot Password?</NavLink>
                   </div>
-                  <button type="submit" className="btn btn-primary w-100 p-2">Sign In</button>
+                  <button type="submit" className="btn btn-primary w-100 p-2" disabled={isPending}>
+                    {isPending ? "Signing in..." : "Sign In"}
+                  </button>
                 </form>
 
                 <div className='d-flex justify-content-between align-items-center mt-4'>
@@ -71,7 +92,7 @@ const SignIn = () => {
                     <ul className="dropdown-menu shadow-sm">
                       {languages.map((lang) => (
                         <li key={lang.code}>
-                          <button className="dropdown-item d-flex align-items-center gap-2" onClick={() => handleSelect(lang)}>
+                          <button className="dropdown-item d-flex align-items-center gap-2" type="button" onClick={() => handleSelect(lang)}>
                             <img src={lang.flag} alt={lang.name} className="flag-icon" />{lang.name}
                           </button>
                         </li>
@@ -91,7 +112,7 @@ const SignIn = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

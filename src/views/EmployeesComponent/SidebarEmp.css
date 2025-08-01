@@ -1,11 +1,10 @@
 /* Custom Offcanvas (Sidebar) */
 .custom-offcanvas {
-  width: 330px;
-  /* position: fixed; */
+  width: 290px;
   top: 0;
   left: 0;
   height: 100%;
-  transition: width 0.3s ease, transform 0.3s ease;
+  transition: width 0.3s ease, transform 0.5s ease;
   z-index: 1040;
   overflow: hidden;
   scrollbar-width: none;
@@ -41,7 +40,7 @@
 /* For desktop (992px and up) */
 @media (min-width: 992px) {
   .custom-offcanvas {
-    width: 330px;
+    width: 290px;
     transform: translateX(0%);
     position: fixed;
     display: flex !important;
@@ -64,27 +63,25 @@
 
 /* Sidebar Toggle Button (for Desktop) */
 .sidebar-toggle-button {
-  /* border: 1px solid #ccc; */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  /* padding: 6px 10px; */
-  transition: left 0.3s ease;
+  transition: left 0.5s ease;
   z-index: 1050;
   position: fixed;
   top: 2rem;
 }
 .sidebar-open {
-  left: 320px;
-  transition: left 0.3s ease;
+  left: 280px;
+  transition: left 0.5s ease;
 }
 .sidebar-closed {
   left: 70px;
-  transition: left 0.3s ease;
+  transition: left 0.5s ease;
 }
 
 /* Icon rotation for toggle button */
 .rotate-icon {
   transform: rotate(180deg);
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
 /* Header within the offcanvas (logo/title area) */
@@ -105,7 +102,7 @@
 
 /* Margin when sidebar is fully open on desktop */
 .main-content-margin {
-  margin-left: 330px;
+  margin-left: 290px;
 }
 
 /* Margin when sidebar is collapsed on desktop */

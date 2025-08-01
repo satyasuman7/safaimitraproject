@@ -86,8 +86,7 @@ const SidebarEmp = () => {
 
         <div className="d-flex position-relative">
           {/* Sidebar */}
-          <div
-            ref={sidebarRef}
+          <div ref={sidebarRef}
             className={[
               'custom-offcanvas',
               'bg-black',
@@ -103,7 +102,7 @@ const SidebarEmp = () => {
           >
             {/* Header */}
             <div className="offcanvas-header border-bottom border-secondary mb-2 pb-3">
-              <div className="text-danger d-flex">
+              <div className="d-flex">
                 <h3 className="mt-4 ms-2">Welcome User</h3>
               </div>
             </div>
@@ -132,7 +131,7 @@ const SidebarEmp = () => {
                     }}
                   >
                     {icons[label]}
-                    <span className="ms-4 sidebar-text fw-bold">{label}</span>
+                    <span className="ms-1 sidebar-text fw-bold">{label}</span>
                   </NavLink>
                 </div>
               ))}

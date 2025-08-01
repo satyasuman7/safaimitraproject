@@ -74,9 +74,9 @@ export default function ReportPartyWaste() {
       <div className="container-fluid my-4">
         <h1 className='mb-3'>Report Party Waste</h1>
         <form action={formAction}>
-          <h5>Party Organised At?</h5>
           <div className="row">
             <div className="col-md-6 col-sm-12 col-12">
+              <h5>Party Organised At?</h5>
               {['Private', 'BMC', 'Hotel', 'Convention Hall', 'Open Field'].map(option => (
                 <div className="form-check me-3 mb-2" key={option}>
                   <input className="form-check-input" type="radio" name="partyOrganised" value={option} required />

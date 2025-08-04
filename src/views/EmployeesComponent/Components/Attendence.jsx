@@ -23,6 +23,42 @@ export default function Attendence() {
   const { darkMode } = useTheme();
   // Get geolocation
   const [position, setPosition] = useState(null);
+  const [checkInLatLng, setCheckInLatLng] = useState(null);
+  const [checkOutLatLng, setCheckOutLatLng] = useState(null);
+
+  const [checkInImage, setCheckInImage] = useState(null);
+  const [checkOutImage, setCheckOutImage] = useState(null);
+  const [checkInFile, setCheckInFile] = useState(null);
+  const [checkOutFile, setCheckOutFile] = useState(null);
+
+  const [isCheckedIn, setIsCheckedIn] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [checkInTime, setCheckInTime] = useState(null);
+  const [a_id, setAId] = useState(null);
+
+  const timerRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  const formatTime = (totalSeconds) => {
+    const hrs = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+    const mins = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+    const secs = String(totalSeconds % 60).padStart(2, '0');
+    return `${hrs}:${mins}:${secs}`;
+  };
+
+  const startTimer = () => {
+    setStartTime(Date.now());
+    timerRef.current = setInterval(() => {
+      setElapsedTime(prev => prev + 1);
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = null;
+  };
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -30,76 +66,126 @@ export default function Attendence() {
       },
       () => toast.error('Failed to retrieve location')
     );
+
+    const savedCheckIn = localStorage.getItem('checkInTime');
+    const savedId = localStorage.getItem('a_id');
+
+    if (savedCheckIn && savedId) {
+      const parsedTime = new Date(savedCheckIn);
+      const elapsed = Math.floor((Date.now() - parsedTime.getTime()) / 1000);
+      setCheckInTime(parsedTime);
+      setElapsedTime(elapsed);
+      setIsCheckedIn(true);
+      setAId(Number(savedId));
+      startTimer();
+    }
   }, []);
 
-  // Open camera
-  const fileInputRef = useRef(null);
   const openCamera = () => {
     fileInputRef.current?.click();
   };
 
-  // Handle file selection
-  const [image, setImage] = useState(null);
-  const [base64Image, setBase64Image] = useState(null);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (!file) {
-      toast.error("No file selected.");
-      return;
-    }
-
-    // Check if the file is an image
-    if (!file.type.startsWith("image/")) {
+    if (!file || !file.type.startsWith("image/")) {
       toast.error("Please select an image file.");
       return;
     }
 
-    // Create preview image
-    const preview = URL.createObjectURL(file);
-    setImage(preview);
-
-    // Read file as base64
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setBase64Image(reader.result);
-      console.log("Base64 ready");
-    };
-    reader.readAsDataURL(file);
+    if (!isCheckedIn) {
+      setCheckInFile(file);
+      setCheckInImage(URL.createObjectURL(file));
+    } else {
+      setCheckOutFile(file);
+      setCheckOutImage(URL.createObjectURL(file));
+    }
   };
 
+  const handlePunchInOut = async () => {
+    const [latitude, longitude] = position || [];
 
-  // Submit attendance
-  const handlePunchIn = async () => {
-    if (!position || !base64Image) {
-      toast.error("Please allow location and take a selfie.");
-      return;
-    }
-
-    const [latitude, longitude] = position;
-    const payload = {
-      latitude,
-      longitude,
-      timestamp: new Date().toISOString(),
-      photo: base64Image,
-    };
-
-    try {
-      const res = await fetch('http://localhost:3000/attendance', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (res.ok) {
-        toast.success('Punch in successful!');
-      } else {
-        toast.error('Failed to submit punch.');
+    if (!isCheckedIn) {
+      if (!position || !checkInFile) {
+        toast.error("Please allow location and take a selfie.");
+        return;
       }
-    } catch (err) {
-      console.error(err);
-      toast.error('Error while sending data.');
+
+      const now = new Date();
+      setCheckInTime(now);
+      setCheckInLatLng({ latitude, longitude });
+
+      const formData = new FormData();
+      formData.append('a_id', 2);
+      formData.append('latitude_check_in', latitude);
+      formData.append('longitude_check_in', longitude);
+      formData.append('check_in', now.toISOString());
+      formData.append('photo', checkInFile);
+
+      try {
+        const res = await fetch('http://localhost:5000/attendence', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          setAId(data.id);
+          localStorage.setItem('a_id', data.id);
+          localStorage.setItem('checkInTime', now.toISOString());
+          setIsCheckedIn(true);
+          startTimer();
+          toast.success("Punch In successful!");
+        } else {
+          toast.error("Punch In failed.");
+        }
+      } catch (err) {
+        console.error(err);
+        toast.error("Error during Punch In.");
+      }
+
+    } else {
+      if (!a_id || !checkOutFile) {
+        toast.error("Please take a selfie for Punch Out.");
+        return;
+      }
+
+      setCheckOutLatLng({ latitude, longitude });
+
+      const formData = new FormData();
+      formData.append('a_id', a_id);
+      formData.append('check_out', new Date().toISOString());
+      formData.append('latitude_check_out', latitude);
+      formData.append('longitude_check_out', longitude);
+      formData.append('photo', checkOutFile);
+
+      try {
+        const res = await fetch(`http://localhost:5000/attendence/${a_id}`, {
+          method: 'PUT',
+          body: formData
+        });
+
+        if (res.ok) {
+          toast.success("Punch Out successful!");
+          localStorage.removeItem('a_id');
+          localStorage.removeItem('checkInTime');
+          setIsCheckedIn(false);
+          setElapsedTime(0);
+          setCheckInImage(null);
+          setCheckOutImage(null);
+          setCheckInFile(null);
+          setCheckOutFile(null);
+          setCheckInTime(null);
+          setAId(null);
+          setCheckInLatLng(null);
+          setCheckOutLatLng(null);
+          stopTimer();
+        } else {
+          toast.error("Punch Out failed.");
+        }
+      } catch (err) {
+        console.error(err);
+        toast.error("Error during Punch Out.");
+      }
     }
   };
 
@@ -107,7 +193,8 @@ export default function Attendence() {
     <>
       <div className="container-fluid my-4">
         <h1 className='mb-3'>My Attendance</h1>
-        <div className="maps">
+
+        <div className="maps mb-4">
           {position ? (
             <MapContainer center={position} zoom={16} scrollWheelZoom={true} className='map_card'>
               <TileLayer attribution='&copy; <NavLink to="https://www.openstreetmap.org/">OpenStreetMap</NavLink> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -126,27 +213,28 @@ export default function Attendence() {
 
         <div className="row mt-5">
           <div className="col-md-6">
-            <label className='mb-2'>Upload Photo</label>
+            <label className='mb-2'>{isCheckedIn ? "Punch Out Photo" : "Punch In Photo"}</label>
             <input ref={fileInputRef} type="file" accept="image/*" capture="user" className='d-none' onChange={handleImageChange} />
             <button className="btn me-4 mb-2" onClick={openCamera} data-bs-theme={darkMode ? 'dark' : 'light'}>
-              <RiCameraAiFill className="cameraUpload" size={70}/>
+              <RiCameraAiFill className="cameraUpload" size={70} />
             </button>
-
-            {/* Image Preview */}
-            {image && (
-              <img src={image} alt="Selfie preview" className="selfie-preview mb-2" />
-            )}
+            {(isCheckedIn && checkOutImage) && <img src={checkOutImage} alt="Selfie preview" className="selfie-preview mb-2" />}
+            {(!isCheckedIn && checkInImage) && <img src={checkInImage} alt="Selfie preview" className="selfie-preview mb-2" />}
           </div>
 
           <div className="col-md-6">
+            {isCheckedIn && (
+              <div className="mb-3">
+                <strong>Hours Worked:</strong> <span style={{ fontWeight: 'bold' }}>{formatTime(elapsedTime)}</span>
+              </div>
+            )}
             <div className="mt-4">
-              <button className="btn btn-success" onClick={handlePunchIn}>
-                Morning Punch In
+              <button className="btn btn-success" onClick={handlePunchInOut}>
+                {isCheckedIn ? "Punch Out" : "Punch In"}
               </button>
             </div>
           </div>
         </div>
-
       </div>
     </>
   );

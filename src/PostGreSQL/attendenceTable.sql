@@ -1,18 +1,20 @@
-CREATE TABLE attendance (
-    id SERIAL PRIMARY KEY,                             -- Auto-incrementing primary key
-    a_id INT NOT NULL,                                 -- Foreign key from admin table (Swacha Sathi ID)
-    dates DATE NOT NULL,                               -- Attendance date
-    check_in TIMESTAMP DEFAULT NULL,                  -- Time of check-in
-    check_out TIMESTAMP DEFAULT NULL,                 -- Time of check-out
-    status SMALLINT DEFAULT 0,                         -- 0 = Active, 1 = Full Day, 2 = Half Day, 3 = Absent
-    latitude VARCHAR(50) DEFAULT NULL,                 -- Latitude at check-in
-    longitude VARCHAR(50) DEFAULT NULL,                -- Longitude at check-in
-    checkout_latitude VARCHAR(50) DEFAULT NULL,        -- Latitude at check-out
-    checkout_longitude VARCHAR(50) DEFAULT NULL,       -- Longitude at check-out
-    remarks TEXT DEFAULT NULL,                         -- Optional notes
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- Created timestamp
-    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP      -- Updated timestamp
+CREATE TABLE attendence (
+  id SERIAL PRIMARY KEY,
+  a_id INT NOT NULL, 
+  latitude_check_in DECIMAL,
+  longitude_check_in DECIMAL,
+  latitude_check_out DECIMAL,
+  longitude_check_out DECIMAL,
+  check_in TIMESTAMP,
+  check_out TIMESTAMP,
+  check_in_photo TEXT,
+  check_out_photo TEXT,
+  create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     
+  update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+--view table
+select * from attendence
 
 -- To automatically update `update_at` on row update:
 CREATE OR REPLACE FUNCTION update_timestamp()
@@ -28,5 +30,3 @@ BEFORE UPDATE ON attendance
 FOR EACH ROW
 EXECUTE FUNCTION update_timestamp();
 
---view table
-SELECT * FROM attendance;

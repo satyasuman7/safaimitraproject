@@ -103,7 +103,7 @@
           {heading && <h4>{heading}</h4>}
 
           {showAssignButton && (
-            <button className="btn btn-success mb-2">
+            <button className="btn btn-success mb-2" onClick={()=>navigate(nav||-1)}>
               {buttonText}
             </button>
           )}

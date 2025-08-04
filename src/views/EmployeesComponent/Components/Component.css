@@ -1,3 +1,12 @@
+/* DASHBOARD SECTION STARTS */
+.name_text{ color: black; }
+  .name_text:hover{color: #1B84FF; transition: .3s;}
+
+.img-fluid{
+  width: 75% !important;
+}
+/* DASHBOARD SECTION ENDS */
+
 /* MY-ATTENDENCE SECTION STARTS*/
 .maps{
   width: 100%;

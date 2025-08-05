@@ -1,23 +1,30 @@
-/* Custom Offcanvas (Sidebar) */
+/* Sidebar */
 .custom-offcanvas {
   width: 290px;
   top: 0;
   left: 0;
   height: 100%;
-  transition: width 0.3s ease, transform 0.5s ease;
+  transition: width 0.3s ease, transform 0.3s ease;
   z-index: 1040;
   overflow: hidden;
-  scrollbar-width: none;
 }
 
-/* For mobile (less than 992px) */
+.hide-scrollbar {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Mobile */
 @media (max-width: 991.98px) {
   .custom-offcanvas {
-    /* width: 300px;  */
     transform: translateX(-100%);
     z-index: 1050;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
   }
 
   .custom-offcanvas.open {
@@ -25,11 +32,6 @@
     display: flex !important;
   }
 
-  .custom-offcanvas.collapsed {
-    transform: translateX(-100%); /* Slide out */
-  }
-
-  /* When not open on mobile, ensure it's completely hidden */
   .custom-offcanvas.collapsed.d-none {
     width: 0;
     transform: translateX(-100%);
@@ -37,11 +39,9 @@
   }
 }
 
-/* For desktop (992px and up) */
+/* Desktop */
 @media (min-width: 992px) {
   .custom-offcanvas {
-    width: 290px;
-    transform: translateX(0%);
     position: fixed;
     display: flex !important;
   }
@@ -53,45 +53,39 @@
   .custom-offcanvas.collapsed .sidebar-text {
     display: none;
   }
-
-  /* Ensure header text adjusts for collapsed desktop state */
-  .custom-offcanvas.collapsed .offcanvas-header h3 {
-    font-size: 0.85rem;
-    white-space: normal; /* Allow text to wrap if it needs to */
-  }
 }
 
-/* Sidebar Toggle Button (for Desktop) */
+/* Sidebar Toggle Button */
 .sidebar-toggle-button {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: left 0.5s ease;
-  z-index: 1050;
   position: fixed;
   top: 2rem;
+  transition: left 0.3s ease;
+  z-index: 1050;
 }
+
 .sidebar-open {
   left: 280px;
-  transition: left 0.5s ease;
 }
+
 .sidebar-closed {
   left: 70px;
-  transition: left 0.5s ease;
 }
 
-/* Icon rotation for toggle button */
+/* Rotate Icon */
 .rotate-icon {
   transform: rotate(180deg);
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 }
 
-/* Header within the offcanvas (logo/title area) */
+/* Header */
 .custom-offcanvas .offcanvas-header {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
 }
 
-/* Main Content Wrapper */
+/* Main Content */
 .main-content-wrapper {
   transition: margin-left 0.3s ease;
   width: 100%;
@@ -100,22 +94,19 @@
   flex-direction: column;
 }
 
-/* Margin when sidebar is fully open on desktop */
 .main-content-margin {
   margin-left: 290px;
 }
 
-/* Margin when sidebar is collapsed on desktop */
 .main-content-collapsed {
   margin-left: 80px;
 }
 
-/* No margin for main content when sidebar is not affecting it (e.g., on mobile, or hidden) */
 .main-content-no-margin {
   margin-left: 0;
 }
 
-/* Sidebar Overlay (for mobile when sidebar is open) */
+/* Mobile Overlay */
 .sidebar-overlay {
   position: fixed;
   top: 0;
@@ -127,35 +118,23 @@
   display: none;
 }
 
-/* Display overlay on small screens when activated by JS */
 @media (max-width: 991.98px) {
   .sidebar-overlay.d-block {
     display: block !important;
   }
 }
 
-/* Sidebar scroll behavior For Webkit browsers (Chrome, Safari) */
-/* .sidebar-scroll {
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #444; 
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
-
-} */
-
 .dashb.active {
   color: white !important;
+}
+
+/* FOR DISABLED LINK */
+.sidebar-disabled {
+  color: #616060 !important; /* Brighter gray */
+  opacity: 0.9;              /* Slight transparency for "disabled" look */
+  cursor: not-allowed;
+}
+
+.sidebar-disabled .badge {
+  background-color: #6c757d; /* Keep the badge style */
 }

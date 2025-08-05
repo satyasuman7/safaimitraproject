@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTheme } from '../../component/ThemeContext';
 import { NavLink } from 'react-router-dom';
 
@@ -33,14 +32,11 @@ export default function DashboardEmp() {
                   <NavLink to="#" className="text-decoration-none text-secondary fw-semibold me-3">satyasuman9893@gmail.com</NavLink>
                   <NavLink to="#" className="text-decoration-none text-secondary fw-semibold me-3">7000720467</NavLink>
                 </div>
-                <NavLink to="/attendence" className="btn btn-primary">Take Attendence</NavLink>
+                <NavLink to="/employee/attendence" className="btn btn-primary">Take Attendence</NavLink>
               </div>
             </div>
           </div>
         </div>
-
-
-
       </div>
     </>
   )

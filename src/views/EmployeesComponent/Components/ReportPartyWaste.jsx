@@ -1,6 +1,6 @@
 import React, { useRef, useState, useActionState } from 'react';
 import { toast } from 'react-toastify';
-import { RiCameraAiFill } from "react-icons/ri";
+import { FaCamera } from "react-icons/fa";
 import { useTheme } from '../../component/ThemeContext';
 
 export default function ReportPartyWaste() {
@@ -72,77 +72,87 @@ export default function ReportPartyWaste() {
   return (
     <>
       <div className="container-fluid my-4">
-        <h1 className='mb-3'>Report Party Waste</h1>
-        <form action={formAction}>
-          <div className="row">
-            <div className="col-md-6 col-sm-12 col-12">
-              <h5>Party Organised At?</h5>
-              {['Private', 'BMC', 'Hotel', 'Convention Hall', 'Open Field'].map(option => (
-                <div className="form-check me-3 mb-2" key={option}>
-                  <input className="form-check-input" type="radio" name="partyOrganised" value={option} required />
-                  <label className="form-check-label">{option}</label>
+        <div className="card shadow">
+          <div className={`card-header px-md-5 px-sm-4 ${darkMode ? 'bg-dark' : 'bg-white'}`}>
+            <h3 className='my-2'>Report Party Waste</h3>
+          </div>
+          <div className="card-body p-4 px-md-5 px-sm-4">
+            <form action={formAction}>
+              <div className="row">
+                <div className="col-md-6 col-sm-12 col-12">
+                  <h5>Party Organised At?</h5>
+                  {['Private', 'BMC', 'Hotel', 'Convention Hall', 'Open Field'].map(option => (
+                    <div className="form-check me-3 mb-2" key={option}>
+                      <input className="form-check-input" type="radio" name="partyOrganised" value={option} required />
+                      <label className="form-check-label">{option}</label>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            <div className="col-md-6 col-sm-12 col-12">
-              <label className='mb-2'>Upload Photo</label>
-              <input ref={fileInputRef} type="file" accept="image/*" capture="user" name="image_file" className="d-none" onChange={handleImageChange} />
-              <input type="hidden" name="image" value={imageBase64} />
-              <button type="button" className="btn border-0 mx-3" onClick={openCamera}>
-                <RiCameraAiFill size={70} data-bs-theme={darkMode ? 'dark' : 'light'} />
-              </button>
-              {imagePreview && <img src={imagePreview} alt="Preview" className="selfie-preview mb-2" />}
-            </div>
+                <div className="col-md-6 col-sm-12 col-12">
+                  <label className='mb-2'>Upload Photo</label>
+                  <input ref={fileInputRef} type="file" accept="image/*" capture="user" name="image_file" className="d-none" onChange={handleImageChange} />
+                  <input type="hidden" name="image" value={imageBase64} />
+                  <button type="button" className="btn border-0 mx-3" onClick={openCamera}>
+                    <FaCamera size={40} data-bs-theme={darkMode ? 'dark' : 'light'} />
+                  </button>
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Preview" className="selfie-preview mb-2" />
+                  ) : (
+                    <img src='../../../../noImage.jpeg' alt="Preview" className="selfie-preview mb-2" />
+                  )}
+                </div>
+              </div>
+
+              <div className="row mt-4">
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Venue Name</label>
+                  <input type="text" name="venuename" className="form-control" placeholder="Enter Venue Name" />
+                </div>
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Venue Contact Number</label>
+                  <input type="number" name="venuecontact" className="form-control" placeholder="Enter Contact Number" />
+                </div>
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Function Type</label>
+                  <select name="functiontype" className="form-select" defaultValue="">
+                    <option value="" disabled>Select Function Type</option>
+                    {functionTypes.map(type => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Fooding Type</label>
+                  <select name="foodingtype" className="form-select" defaultValue="">
+                    <option value="" disabled>Select Fooding Type</option>
+                    {foodingTypes.map(type => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Booked from App</label>
+                  <select name="bookedfromapp" className="form-select" defaultValue="">
+                    <option value="" disabled>Booked from Safai-Mitra App</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Number of Guests</label>
+                  <input type="nymber" name="noofguests" className="form-control" placeholder="Approx Number of Guests" />
+                </div>
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Customer Name</label>
+                  <input type="text" name="customername" className="form-control" placeholder="Enter Customer Name" />
+                </div>
+              </div>
+
+              <button type="submit" className="btn btn-success">Submit</button>
+            </form>
           </div>
-
-          <div className="row mt-4">
-            <div className="col-md-4 mb-4">
-              <label className='mb-2 ms-1'>Venue Name</label>
-              <input type="text" name="venuename" className="form-control" placeholder="Enter Venue Name" />
-            </div>
-            <div className="col-md-4 mb-4">
-              <label className='mb-2 ms-1'>Venue Contact Number</label>
-              <input type="number" name="venuecontact" className="form-control" placeholder="Contact Number" />
-            </div>
-            <div className="col-md-4 mb-4">
-              <label className='mb-2 ms-1'>Function Type</label>
-              <select name="functiontype" className="form-select" defaultValue="">
-                <option value="" disabled>Select Function Type</option>
-                {functionTypes.map(type => (
-                  <option key={type} value={type}>{type}</option>
-                ))}
-              </select>
-            </div>
-            <div className="col-md-4 mb-4">
-              <label className='mb-2 ms-1'>Fooding Type</label>
-              <select name="foodingtype" className="form-select" defaultValue="">
-                <option value="" disabled>Select Fooding Type</option>
-                {foodingTypes.map(type => (
-                  <option key={type} value={type}>{type}</option>
-                ))}
-              </select>
-            </div>
-            <div className="col-md-4 mb-4">
-              <label className='mb-2 ms-1'>Booked from App</label>
-              <select name="bookedfromapp" className="form-select" defaultValue="">
-                <option value="" disabled>Booked from Safai-Mitra App</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </div>
-            <div className="col-md-4 mb-4">
-              <label className='mb-2 ms-1'>Number of Guests</label>
-              <input type="nymber" name="noofguests" className="form-control" placeholder="Approx Number of Guests" />
-            </div>
-            <div className="col-md-4 mb-4">
-              <label className='mb-2 ms-1'>Customer Name</label>
-              <input type="text" name="customername" className="form-control" placeholder="Enter Customer Name" />
-            </div>
-          </div>
-
-          <button type="submit" className="btn btn-success">Submit</button>
-        </form>
+        </div>
       </div>
     </>
   );

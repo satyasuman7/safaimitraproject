@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Component.css';
 import { toast } from 'react-toastify';
 import { useTheme } from '../../component/ThemeContext';
@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 //ICON
-import { RiCameraAiFill } from "react-icons/ri";
+import { FaCamera } from "react-icons/fa";
 
 // Fix leaflet's default icon paths
 // delete L.Icon.Default.prototype._getIconUrl;
@@ -21,7 +21,7 @@ import { RiCameraAiFill } from "react-icons/ri";
 
 export default function Attendence() {
   const { darkMode } = useTheme();
-  // Get geolocation
+
   const [position, setPosition] = useState(null);
   const [checkInLatLng, setCheckInLatLng] = useState(null);
   const [checkOutLatLng, setCheckOutLatLng] = useState(null);
@@ -100,6 +100,8 @@ export default function Attendence() {
       setCheckOutImage(URL.createObjectURL(file));
     }
   };
+
+  const imageSrc = isCheckedIn ? (checkOutImage || '../../../../noImage.jpeg') : (checkInImage || '../../../../noImage.jpeg');
 
   const handlePunchInOut = async () => {
     const [latitude, longitude] = position || [];
@@ -192,46 +194,50 @@ export default function Attendence() {
   return (
     <>
       <div className="container-fluid my-4">
-        <h1 className='mb-3'>My Attendance</h1>
-
-        <div className="maps mb-4">
-          {position ? (
-            <MapContainer center={position} zoom={16} scrollWheelZoom={true} className='map_card'>
-              <TileLayer attribution='&copy; <NavLink to="https://www.openstreetmap.org/">OpenStreetMap</NavLink> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <Marker position={position}>
-                <Popup>You are here</Popup>
-              </Marker>
-            </MapContainer>
-          ) : (
-            <div className="d-flex justify-content-center no_map_card">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="row mt-5">
-          <div className="col-md-6">
-            <label className='mb-2'>{isCheckedIn ? "Punch Out Photo" : "Punch In Photo"}</label>
-            <input ref={fileInputRef} type="file" accept="image/*" capture="user" className='d-none' onChange={handleImageChange} />
-            <button className="btn me-4 mb-2" onClick={openCamera} data-bs-theme={darkMode ? 'dark' : 'light'}>
-              <RiCameraAiFill className="cameraUpload" size={70} />
-            </button>
-            {(isCheckedIn && checkOutImage) && <img src={checkOutImage} alt="Selfie preview" className="selfie-preview mb-2" />}
-            {(!isCheckedIn && checkInImage) && <img src={checkInImage} alt="Selfie preview" className="selfie-preview mb-2" />}
+        <div class="card shadow">
+          <div className={`card-header px-md-5 px-sm-4 ${darkMode ? 'bg-dark' : 'bg-white'}`}>
+            <h3 className='my-2'>My Attendence</h3>
           </div>
+          <div class="card-body p-4 px-md-5 px-sm-4">
+            <div className="maps mb-4">
+              {position ? (
+                <MapContainer center={position} zoom={16} scrollWheelZoom={true} className='map_card'>
+                  <TileLayer attribution='&copy; <NavLink to="https://www.openstreetmap.org/">OpenStreetMap</NavLink> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                  <Marker position={position}>
+                    <Popup>You are here</Popup>
+                  </Marker>
+                </MapContainer>
+              ) : (
+                <div className="d-flex justify-content-center no_map_card">
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              )}
+            </div>
 
-          <div className="col-md-6">
-            {isCheckedIn && (
-              <div className="mb-3">
-                <strong>Hours Worked:</strong> <span style={{ fontWeight: 'bold' }}>{formatTime(elapsedTime)}</span>
+            <div className="row">
+              <div className="col-md-6">
+                <label className='mb-2'>{isCheckedIn ? "Punch Out Photo" : "Punch In Photo"}</label>
+                <input ref={fileInputRef} type="file" accept="image/*" capture="user" className='d-none' onChange={handleImageChange} />
+                <button className="btn me-4 mb-2" onClick={openCamera} data-bs-theme={darkMode ? 'dark' : 'light'}>
+                  <FaCamera className="cameraUpload" size={40} />
+                </button>
+                <img src={imageSrc} alt="Selfie preview" className="selfie-preview mb-2" />
               </div>
-            )}
-            <div className="mt-4">
-              <button className="btn btn-success" onClick={handlePunchInOut}>
-                {isCheckedIn ? "Punch Out" : "Punch In"}
-              </button>
+
+              <div className="col-md-6">
+                <div>
+                  <button className="btn btn-success" onClick={handlePunchInOut}>
+                    {isCheckedIn ? "Punch Out" : "Punch In"}
+                  </button>
+                </div>
+                {isCheckedIn && (
+                  <div className="mt-3">
+                    <span className='fw-bold'> Hours Worked: {formatTime(elapsedTime)}</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

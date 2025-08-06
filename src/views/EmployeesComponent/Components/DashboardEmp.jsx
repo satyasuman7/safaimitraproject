@@ -20,13 +20,13 @@ export default function DashboardEmp() {
           <div className="card-body">
             <div className="row">
               <div className="col-md-3 colsm-12 col-12">
-                <img src="../../../../300-1.jpg" alt="" className='img-fluid rounded-4' />
+                <img src="../../../../300-1.jpg" alt="" className='img-fluid dashboard_img rounded-4' />
               </div>
-              <div className="col-md-9 colsm-12 col-12 py-3">
+              <div className="col-md-9 col-sm-12 col-12 py-3">
                 <h5 className="card-title mb-3">
-                  <NavLink to="#" className="text-decoration-none fw-bold name_text">Good Morning!, Satya Suman Behera</NavLink>
+                  <NavLink to="#" className={`text-decoration-none fw-bold ${darkMode ? 'text-white' : 'text-black'}`}>Good Morning!, Satya Suman Behera</NavLink>
                 </h5>
-                <div className="d-flex mb-5">
+                <div className="d-flex flex-wrap mb-5">
                   <NavLink to="#" className="text-decoration-none text-secondary fw-semibold me-3">Swacha Sathi</NavLink>
                   <NavLink to="#" className="text-decoration-none text-secondary fw-semibold me-3">Bhubaneswar</NavLink>
                   <NavLink to="#" className="text-decoration-none text-secondary fw-semibold me-3">satyasuman9893@gmail.com</NavLink>

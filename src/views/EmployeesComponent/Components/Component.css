@@ -1,9 +1,13 @@
 /* DASHBOARD SECTION STARTS */
-.name_text{ color: black; }
-  .name_text:hover{color: #1B84FF; transition: .3s;}
 
-.img-fluid{
-  width: 75% !important;
+ .dashboard_img{
+  width: 45% !important;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard_img {
+    width: 100% !important; /* Example: change width for 768px and above */
+  }
 }
 /* DASHBOARD SECTION ENDS */
 

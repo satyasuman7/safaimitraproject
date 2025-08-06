@@ -82,7 +82,7 @@ export default function CndWaste() {
               <h5>CnD Waste By?</h5>
               <div className="row">
                 <div className="col-md-6 col-sm-12 col-12">
-                  {['Private', 'BMC', 'BDA', 'State', 'Central'].map(option => (
+                  {['Private', 'Public Place', 'State', 'Central'].map(option => (
                     <div className="form-check me-3 mb-2" key={option}>
                       <input className="form-check-input" type="radio" name="cndWaste" value={option} required />
                       <label className="form-check-label">{option}</label>
@@ -107,12 +107,16 @@ export default function CndWaste() {
 
               <div className="row mt-4">
                 <div className="col-md-4 mb-4">
-                  <label className='mb-2 ms-1'>Location Name</label>
-                  <input type="text" name="locationname" className="form-control" placeholder="Enter Location Name" />
+                  <label className='mb-2 ms-1'>Customer Name</label>
+                  <input type="text" name="customername" className="form-control" placeholder="Enter Customer Name" />
                 </div>
                 <div className="col-md-4 mb-4">
                   <label className='mb-2 ms-1'>Authorised Person Contact Number</label>
                   <input type="number" name="authorizedperson" className="form-control" placeholder="Enter Authorised Contact No." />
+                </div>
+                <div className="col-md-4 mb-4">
+                  <label className='mb-2 ms-1'>Location Name</label>
+                  <input type="text" name="locationname" className="form-control" placeholder="Enter Location Name" />
                 </div>
                 <div className="col-md-4 mb-4">
                   <label className='mb-2 ms-1'>Construction Type</label>
@@ -143,10 +147,6 @@ export default function CndWaste() {
                 <div className="col-md-4 mb-4">
                   <label className='mb-2 ms-1'>Amount of Waste (Ton)</label>
                   <input type="number" name="amountofwaste" className="form-control" placeholder="Approx Amount of Waste" />
-                </div>
-                <div className="col-md-4 mb-4">
-                  <label className='mb-2 ms-1'>Customer Name</label>
-                  <input type="text" name="customername" className="form-control" placeholder="Enter Customer Name" />
                 </div>
               </div>
 

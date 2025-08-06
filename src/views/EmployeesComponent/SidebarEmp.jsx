@@ -36,7 +36,7 @@ const menuItems = [
   { label: 'My Attendence', to: '/employee/attendence' },
   { label: 'Roads Clean Report', to: '/employee/roadcleanreport', disabled: true },
   { label: 'Report Party Waste', to: '/employee/reportpartywaste' },
-  { label: 'Leave Apply', to: '/employee/leaveapply' },
+  { label: 'Leave Apply', to: '/employee/leaveapply/:id' },
   { label: 'Awareness', to: '/employee/awareness' },
   { label: 'Vehicle Reporting', to: '/employee/vehiclereport' },
   // { label: 'Conservancy Lane Report', to: '/employee/conservancylanereport' },

@@ -28,6 +28,7 @@ import DashboardEmp from './views/EmployeesComponent/Components/DashboardEmp.jsx
 import Attendence from './views/EmployeesComponent/Components/Attendence.jsx'
 import RoadCleanReport from './views/EmployeesComponent/Components/RoadCleanReport.jsx'
 import ReportPartyWaste from './views/EmployeesComponent/Components/ReportPartyWaste.jsx'
+import LeaveApply from './views/EmployeesComponent/Components/LeaveApply.jsx';
 // import ConservancyReport from './views/EmployeesComponent/Components/ConservancyReport.jsx'
 // import CommercialCleaning from './views/EmployeesComponent/Components/CommercialCleaning.jsx'
 import CndWaste from './views/EmployeesComponent/Components/CndWaste.jsx'
@@ -55,6 +56,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/employee/attendence' element={<Attendence />} />
           <Route path='/employee/roadcleanreport' element={<RoadCleanReport />} />
           <Route path='/employee/reportpartywaste' element={<ReportPartyWaste />} />
+          <Route path='/employee/leaveapply/:id' element={<LeaveApply />} />
           {/* <Route path='/employee/conservancylanereport' element={<ConservancyReport />} />
           <Route path='/employee/commercialcleaningreport' element={<CommercialCleaning />} /> */}
           <Route path='/employee/cndwaste' element={<CndWaste />} />

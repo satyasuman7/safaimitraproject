@@ -81,7 +81,7 @@ export default function ReportPartyWaste() {
               <div className="row">
                 <div className="col-md-6 col-sm-12 col-12">
                   <h5>Party Organised At?</h5>
-                  {['Private', 'BMC', 'Hotel', 'Convention Hall', 'Open Field'].map(option => (
+                  {['Private', 'Public Place', 'Hotel', 'Convention Hall', 'Open Field'].map(option => (
                     <div className="form-check me-3 mb-2" key={option}>
                       <input className="form-check-input" type="radio" name="partyOrganised" value={option} required />
                       <label className="form-check-label">{option}</label>

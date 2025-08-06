@@ -43,12 +43,16 @@ export default function MoKhataSale() {
               <div className="row">
                 <div className="col-md-6 col-sm-12 col-12 mb-4">
                   <h5>Mo Khata Sold To ?</h5>
-                  {['Commercial', 'Household'].map(option => (
-                    <div className="form-check me-3 mb-2" key={option}>
-                      <input className="form-check-input" type="radio" name="mokhatasold" value={option} required />
-                      <label className="form-check-label">{option}</label>
-                    </div>
-                  ))}
+                  <div className="mb-2">
+                    <select className="form-select" name="mo_khata_sale" required>
+                      <option value="">Select an option</option>
+                      {['Commercial', 'Household'].map(option => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 <div className="col-md-6 col-sm-12 col-12 mb-4">
@@ -67,22 +71,22 @@ export default function MoKhataSale() {
 
                 <div className="col-md-6 col-sm-12 col-12 mb-4">
                   <label className='mb-2 ms-1'>Receipt No.</label>
-                  <input type="text" name="receiptno" className="form-control" placeholder="Enter Receipt No." />
+                  <input type="text" name="receipt_no" className="form-control" placeholder="Enter Receipt No." />
                 </div>
 
                 <div className="col-md-6 col-sm-12 col-12 mb-4">
                   <label className='mb-2 ms-1'>Quantity Sold</label>
-                  <input type="text" name="quantitysold" className="form-control" placeholder="Enter Quantity Sold" />
+                  <input type="text" name="quantity_sold" className="form-control" placeholder="Enter Quantity Sold" />
                 </div>
 
                 <div className="col-md-6 col-sm-12 col-12 mb-4">
                   <label className='mb-2 ms-1'>Customer Name</label>
-                  <input type="text" name="customername" className="form-control" placeholder="Enter Customer Name" />
+                  <input type="text" name="customer_name" className="form-control" placeholder="Enter Customer Name" />
                 </div>
 
                 <div className="col-md-6 col-sm-12 col-12 mb-4">
                   <label className='mb-2 ms-1'>Customer Phone</label>
-                  <input type="text" name="customerphone" className="form-control" placeholder="Enter Customer Phone" />
+                  <input type="text" name="customer_phone" className="form-control" placeholder="Enter Customer Phone" />
                 </div>
               </div>
 

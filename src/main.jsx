@@ -38,11 +38,6 @@ import GarbageSpotted from './views/EmployeesComponent/Components/GarbageSpotted
 // import BagSale from './views/EmployeesComponent/Components/BagSale.jsx'
 import MoKhataSale from './views/EmployeesComponent/Components/MoKhataSale.jsx'
 
-//PAGES FOR DEPARTMENT-COMPONENT
-import SidebarDept from './views/DepatmentComponent/SidebarDept.jsx'
-// import DashboardDept from './views/DepatmentComponent/components/DashboardDept.jsx'
-// import DepartmentWorker from './views/DepatmentComponent/components/DepartmentWorker.jsx';
-
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -68,11 +63,6 @@ createRoot(document.getElementById('root')).render(
           {/* <Route path='/employee/bagsale' element={<BagSale />} /> */}
           <Route path='/employee/mokhatasale' element={<MoKhataSale/>}/>
         </Route>
-
-        {/* <Route path='/dept' element={<SidebarDept />}>
-          <Route index element={<DashboardDept/>}/>
-          <Route path='/dept/departworker' element={<DepartmentWorker/>} />
-        </Route> */}
       </Routes>
       <ToastContainer theme="colored" transition={Flip}/>
     </ThemeProvider>

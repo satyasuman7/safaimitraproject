@@ -34,7 +34,6 @@ const icons = {
 const menuItems = [
   { label: 'Dashboard', to: '/' },
   { label: 'My Attendence', to: '/employee/attendence' },
-  { label: 'Roads Clean Report', to: '/employee/roadcleanreport', disabled: true },
   { label: 'Report Party Waste', to: '/employee/reportpartywaste' },
   { label: 'Leave Apply', to: '/employee/leaveapply/:id' },
   { label: 'Awareness', to: '/employee/awareness' },
@@ -42,9 +41,10 @@ const menuItems = [
   // { label: 'Conservancy Lane Report', to: '/employee/conservancylanereport' },
   // { label: 'Commercial Cleaning Report', to: '/employee/commercialcleaningreport' },
   { label: 'Report CND Waste', to: '/employee/cndwaste' },
-  { label: 'Garbage Spotted', to: '/employee/garbagespotted', disabled: true },
   // { label: 'Bag Sale', to: '/employee/bagsale' },
   { label: 'Mo Khata Sale', to: '/employee/mokhatasale' },
+  { label: 'Roads Clean Report', to: '/employee/roadcleanreport', disabled: true },
+  { label: 'Garbage Spotted', to: '/employee/garbagespotted', disabled: true },
 ];
 
 const SidebarEmp = () => {
@@ -132,12 +132,7 @@ const SidebarEmp = () => {
                     <span className="badge bg-secondary ms-2">Soon</span>
                   </div>
                 ) : (
-                  <NavLink
-                    to={to}
-                    className={({ isActive }) => `dashb text-decoration-none ${isActive ? 'text-white' : ''}`}
-                    style={{ color: '#a5a5a5' }}
-                    onClick={() => !isDesktop && setIsMobileOpen(false)}
-                  >
+                  <NavLink to={to} className={({ isActive }) => `dashb text-decoration-none ${isActive ? 'text-white' : ''}`} onClick={() => !isDesktop && setIsMobileOpen(false)}>
                     {icons[label]}
                     <span className="ms-1 sidebar-text fw-bold">{label}</span>
                   </NavLink>

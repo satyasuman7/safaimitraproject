@@ -50,7 +50,7 @@
     width: 80px;
   }
 
-  .custom-offcanvas.collapsed .sidebar-text {
+  .custom-offcanvas.collapsed .sidebar-text, .custom-offcanvas.collapsed .badge {
     display: none;
   }
 }
@@ -124,9 +124,12 @@
   }
 }
 
-.dashb.active {
-  color: white !important;
+.dashb{
+  color: #a5a5a5
 }
+  .dashb.active {
+    color: white !important;
+  }
 
 /* FOR DISABLED LINK */
 .sidebar-disabled {

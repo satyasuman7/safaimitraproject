@@ -29,6 +29,8 @@ import Attendence from './views/EmployeesComponent/Components/Attendence.jsx'
 import RoadCleanReport from './views/EmployeesComponent/Components/RoadCleanReport.jsx'
 import ReportPartyWaste from './views/EmployeesComponent/Components/ReportPartyWaste.jsx'
 import LeaveApply from './views/EmployeesComponent/Components/LeaveApply.jsx';
+import Awareness from './views/EmployeesComponent/Components/Awareness.jsx';
+import VehicleReporting from './views/EmployeesComponent/Components/VehicleReporting.jsx';
 // import ConservancyReport from './views/EmployeesComponent/Components/ConservancyReport.jsx'
 // import CommercialCleaning from './views/EmployeesComponent/Components/CommercialCleaning.jsx'
 import CndWaste from './views/EmployeesComponent/Components/CndWaste.jsx'
@@ -37,7 +39,7 @@ import GarbageSpotted from './views/EmployeesComponent/Components/GarbageSpotted
 import MoKhataSale from './views/EmployeesComponent/Components/MoKhataSale.jsx'
 
 //PAGES FOR DEPARTMENT-COMPONENT
-// import SidebarDept from './views/DepatmentComponent/SidebarDept.jsx'
+import SidebarDept from './views/DepatmentComponent/SidebarDept.jsx'
 // import DashboardDept from './views/DepatmentComponent/components/DashboardDept.jsx'
 // import DepartmentWorker from './views/DepatmentComponent/components/DepartmentWorker.jsx';
 
@@ -57,6 +59,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='/employee/roadcleanreport' element={<RoadCleanReport />} />
           <Route path='/employee/reportpartywaste' element={<ReportPartyWaste />} />
           <Route path='/employee/leaveapply/:id' element={<LeaveApply />} />
+          <Route path='/employee/awareness' element={<Awareness />} />
+          <Route path='/employee/vehiclereport' element={<VehicleReporting />} />
           {/* <Route path='/employee/conservancylanereport' element={<ConservancyReport />} />
           <Route path='/employee/commercialcleaningreport' element={<CommercialCleaning />} /> */}
           <Route path='/employee/cndwaste' element={<CndWaste />} />

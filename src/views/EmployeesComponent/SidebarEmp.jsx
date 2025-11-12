@@ -96,18 +96,14 @@ const SidebarEmp = () => {
     <div data-bs-theme={darkMode ? 'dark' : 'light'}>
       {/* Desktop Toggle Button */}
       {isDesktop && (
-        <button
-          className={`sidebar-toggle-button btn btn-light d-none d-lg-block ${isOpen ? 'sidebar-open' : 'sidebar-closed'}`}
-          onClick={toggleSidebar}
-        >
+        <button className={`sidebar-toggle-button btn btn-light d-none d-lg-block ${isOpen ? 'sidebar-open' : 'sidebar-closed'}`} onClick={toggleSidebar}>
           <FaLongArrowAltRight className={isOpen ? 'rotate-icon' : ''} />
         </button>
       )}
 
       <div className="d-flex position-relative">
         {/* Sidebar */}
-        <div
-          ref={sidebarRef}
+        <div ref={sidebarRef}
           className={[
             'custom-offcanvas bg-black text-white py-3 flex-column d-lg-flex',
             isMobileOpen ? 'open position-fixed' : '',
@@ -153,10 +149,7 @@ const SidebarEmp = () => {
         </div>
 
         {/* Main Content */}
-        <div
-          className={`main-content-wrapper flex-grow-1 ${isDesktop ? (isOpen ? 'main-content-margin' : 'main-content-collapsed') : 'main-content-no-margin'
-            }`}
-        >
+        <div className={`main-content-wrapper flex-grow-1 ${isDesktop ? (isOpen ? 'main-content-margin' : 'main-content-collapsed') : 'main-content-no-margin'}`}>
           <TopNavbar toggleSidebar={toggleMobileSidebar} />
           <Outlet />
           <Footer />

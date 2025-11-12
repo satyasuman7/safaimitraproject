@@ -133,8 +133,8 @@
 
 /* FOR DISABLED LINK */
 .sidebar-disabled {
-  color: #616060 !important; /* Brighter gray */
-  opacity: 0.9;              /* Slight transparency for "disabled" look */
+  color: #616060 !important;
+  opacity: 0.9;         
   cursor: not-allowed;
 }
 

@@ -124,7 +124,7 @@ export default function Attendence() {
       formData.append('photo', checkInFile);
 
       try {
-        const res = await fetch('http://localhost:5000/attendence', {
+        const res = await fetch('http://192.168.29.190:5000/attendence', {
           method: 'POST',
           body: formData
         });
@@ -161,7 +161,7 @@ export default function Attendence() {
       formData.append('photo', checkOutFile);
 
       try {
-        const res = await fetch(`http://localhost:5000/attendence/${a_id}`, {
+        const res = await fetch(`http://192.168.29.190:5000/attendence/${a_id}`, {
           method: 'PUT',
           body: formData
         });

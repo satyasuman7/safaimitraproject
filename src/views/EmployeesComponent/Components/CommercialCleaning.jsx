@@ -74,7 +74,7 @@ export default function CommercialCleaning() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/commercialcleanreport', {
+      const response = await fetch('http://192.168.29.190:5000/commercialcleanreport', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(commercialCleaning),

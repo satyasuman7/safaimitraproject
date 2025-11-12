@@ -73,7 +73,7 @@ export default function ConservancyReport() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/conservancyreport', {
+      const response = await fetch('http://192.168.29.190:5000/conservancyreport', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(conservancyReport),
